@@ -7,7 +7,7 @@
 ![页面截图][1]
 
 
-  ## Usage
+## Usage
 
 **For a working implementation of this project see the `app/` folder.**
 
@@ -115,6 +115,6 @@ Inspired by
 
 
   [1]: http://oihnadz1x.bkt.clouddn.com/CountTimeProgressView01.png
-  [2]: https://github.com/sfyc23/CountTimeProgressView/download/app-debug.apk
+  [2]: https://github.com/sfyc23/CountTimeProgressView/tree/master/download/app-debug.apk
   [3]: https://github.com/tangqi92
   [4]: https://github.com/tangqi92/WaveLoadingView
