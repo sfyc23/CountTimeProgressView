@@ -22,9 +22,11 @@ public class MainActivity extends AppCompatActivity {
         countTimeProgressView.addOnEndListener(new CountTimeProgressView.OnEndListener() {
             @Override
             public void onAnimationEnd() {
+
                 startActivity(new Intent(MainActivity.this,SimpleActivity.class));
                 finish();
             }
+//            gradlew bintrayUpload
 
             @Override
             public void onClick(long overageTime) {

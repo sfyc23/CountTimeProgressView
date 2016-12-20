@@ -46,7 +46,7 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
     //MarkBall parameter
     private boolean mMarkBallFlag = true;
     private float mMarkBallWidth = 3f;
-    private int mMarkBallColor = Color.parseColor("#24AE48");
+    private int mMarkBallColor = Color.RED;
 
     private float mBorderWidth = 3f;
     private int mBorderDrawColor = Color.parseColor("#99928A");
@@ -55,7 +55,7 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
 
     //center text
     private String mTitleCenter = "跳过";
-    private float mTextSize = 18f;
+    private float mTextSize = 16f;
     private int mTextColor = Color.parseColor("#212121");
 
     private int mCountTime = 0;
@@ -361,8 +361,8 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
     }
 
     /**
-     * Get the overage time
-     * @return
+     *
+     * @return Get the overage time
      */
     public long getOverageTime(){
         return (long)(mCountTime * (1 - mCurrentValue));
@@ -445,7 +445,7 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
      * TextStyle.SECOND,倒计时（5s）
      * TextStyle.CLOCK，倒计时（时钟00:00:02）
      *
-     * @param textStyle
+     * @param textStyle 选择显示的类型
      */
     public void setTextStyle(int textStyle) {
         this.mTextStyle = textStyle;

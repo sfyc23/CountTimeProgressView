@@ -1,6 +1,7 @@
 package com.sfyc.simple;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
@@ -195,18 +196,22 @@ public class SimpleActivity extends AppCompatActivity {
             }
         });
 
-
+        countTimeProgressView.setStartAngle(0);
         countTimeProgressView.setCountTime(6000);
-        countTimeProgressView.setTitleCenter("跳过");
         countTimeProgressView.setTextStyle(CountTimeProgressView.TextStyle.SECOND);
-        countTimeProgressView.startCountTimeAnimation();
+        countTimeProgressView.setBorderWidth(8);
+        countTimeProgressView.setBorderBottomColor(Color.GRAY);
+        countTimeProgressView.setBorderDrawColor(Color.RED);
+        countTimeProgressView.setBackgroundColor(Color.WHITE);
+        countTimeProgressView.setMarkBallFlag(true);
+        countTimeProgressView.setMarkBallWidth(12);
+        countTimeProgressView.setMarkBallColor(Color.GREEN);
 
         countTimeProgressView.addOnEndListener(new CountTimeProgressView.OnEndListener() {
             @Override
             public void onAnimationEnd() {
                 Toast.makeText(SimpleActivity.this, "时间到", Toast.LENGTH_SHORT).show();
             }
-
             @Override
             public void onClick(long overageTime) {
                 if (countTimeProgressView.isRunning()) {
@@ -217,5 +222,6 @@ public class SimpleActivity extends AppCompatActivity {
                 }
             }
         });
+        countTimeProgressView.startCountTimeAnimation();
     }
 }
