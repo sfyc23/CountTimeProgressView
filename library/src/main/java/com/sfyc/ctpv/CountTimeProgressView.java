@@ -3,6 +3,7 @@ package com.sfyc.ctpv;
 /**
  * Author :leilei on 2016/12/19 1512.
  */
+
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -40,7 +41,6 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
     private float[] mTan;
     private float mCurrentValue;
     private float mLength;
-
 
 
     //MarkBall parameter
@@ -226,7 +226,13 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
 
         switch (mTextStyle) {
             case TextStyle.SECOND:
-                displayText = (int) (mCountTime * (1 - mCurrentValue) / 1000) + "s";
+//                displayText = (int) (mCountTime * (1 - mCurrentValue) / 1000) + "s";
+                if (mTitleCenter.contains("%")) {
+                    displayText = String.format(mTitleCenter, (int)(mCountTime * (1 - mCurrentValue) / 1000));
+                } else {
+                    displayText = (int) (mCountTime * (1 - mCurrentValue) / 1000) + "s";
+                }
+
                 break;
             case TextStyle.CLOCK:
                 displayText = getClockByLong((long) (mCountTime * (1 - mCurrentValue)));
@@ -258,7 +264,6 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
     }
 
 
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int width = MeasureSpec.getSize(widthMeasureSpec);
@@ -276,8 +281,8 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
         }
     }
 
-    public void calcRadius(){
-        if(mMarkBallFlag){
+    public void calcRadius() {
+        if (mMarkBallFlag) {
             radius = mCanvasCenterWidth - Math.max(mBorderWidth, mMarkBallWidth);
         } else {
             radius = mCanvasCenterWidth - mBorderWidth;
@@ -344,6 +349,7 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
             mAnimator.start();
         }
     }
+
     /**
      * cancel countTime
      */
@@ -361,11 +367,10 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
     }
 
     /**
-     *
      * @return Get the overage time
      */
-    public long getOverageTime(){
-        return (long)(mCountTime * (1 - mCurrentValue));
+    public long getOverageTime() {
+        return (long) (mCountTime * (1 - mCurrentValue));
     }
 
     public void setBorderWidth(int borderWidth) {
@@ -458,6 +463,7 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
 
     public interface OnEndListener {
         public void onAnimationEnd();
+
         public void onClick(long overageTime);
     }
 

@@ -37,4 +37,11 @@ public class MainActivity extends AppCompatActivity {
         });
         countTimeProgressView.startCountTimeAnimation();
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (countTimeProgressView != null && countTimeProgressView.isRunning()) {
+            countTimeProgressView.cancelCountTimeAnimation();
+        }
+    }
 }

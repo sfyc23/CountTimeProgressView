@@ -206,6 +206,7 @@ public class SimpleActivity extends AppCompatActivity {
         countTimeProgressView.setMarkBallFlag(true);
         countTimeProgressView.setMarkBallWidth(12);
         countTimeProgressView.setMarkBallColor(Color.GREEN);
+        countTimeProgressView.setTitleCenter("跳过（%s）s");
 
         countTimeProgressView.addOnEndListener(new CountTimeProgressView.OnEndListener() {
             @Override
