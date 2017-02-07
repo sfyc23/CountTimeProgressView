@@ -7,7 +7,7 @@
 ![页面截图][1]
 
 
-## Usage
+  ## Usage
 
 **For a working implementation of this project see the `app/` folder.**
 
@@ -19,7 +19,7 @@ Include the library as a local library project or add the dependency in your bui
 dependencies {
     compile 'com.sfyc.ctpv:1.0.0'
 }
-```	
+```
 
 ### Step 2
 
@@ -59,7 +59,7 @@ You can write some animation codes to the callbacks such as setOnCheckedChangeLi
     countTimeProgressView.setMarkBallFlag(true);
     countTimeProgressView.setMarkBallWidth(4);
     countTimeProgressView.setMarkBallColor(Color.GREEN);
-    
+
     countTimeProgressView.addOnEndListener(new CountTimeProgressView.OnEndListener() {
         @Override
         public void onAnimationEnd() {
@@ -92,8 +92,9 @@ Please feel free to :)
 | markBallColor | color | Ball Color , default is red
 | markBallFlag | boolean | Bottom Color
 | startAngle | integer | Ball start angle , default is 0
+| clockwise | boolean | Clockwise or Counter-clockwise , default is true
 | countTime | integer | Count time , default is 0
-| textStyle | enum | Center text style , default is jump 
+| textStyle | enum | Center text style , default is jump
 | titleCenter | string | Center text style , displayed only when textStyle is "jump"
 | titleCenterColor | color | Center text style , default is black.
 | titleCenterSize | dimension | Center text size , default is 16sp.
@@ -104,8 +105,8 @@ First commit
 
 ## Demo
 [Download][2]
-     
-     
+
+
 ## Thanks
 
 Inspired by
@@ -115,6 +116,6 @@ Inspired by
 
 
   [1]: http://oihnadz1x.bkt.clouddn.com/CountTimeProgressView01.png
-  [2]: https://github.com/sfyc23/CountTimeProgressView/tree/master/download/app-debug.apk
+  [2]: https://github.com/sfyc23/CountTimeProgressView/download/app-debug.apk
   [3]: https://github.com/tangqi92
   [4]: https://github.com/tangqi92/WaveLoadingView
