@@ -196,6 +196,16 @@ public class SimpleActivity extends AppCompatActivity {
             }
         });
 
+        SwitchButton sb2 = (SwitchButton) findViewById(R.id.sb_clockwise);
+        sb2.setChecked(true);
+        sb2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                countTimeProgressView.setClockwise(isChecked);
+                countTimeProgressView.startCountTimeAnimation();
+            }
+        });
+
         countTimeProgressView.setStartAngle(0);
         countTimeProgressView.setCountTime(6000);
         countTimeProgressView.setTextStyle(CountTimeProgressView.TextStyle.SECOND);

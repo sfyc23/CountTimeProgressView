@@ -84,7 +84,23 @@
                 android:layout_width="wrap_content"
                 android:gravity="center_vertical"
                 android:layout_height="wrap_content"
+                />
+        </LinearLayout>
 
+        <LinearLayout style="@style/Linear_common"
+            android:layout_height="64dp">
+
+            <TextView
+                style="@style/TextView_left"
+                android:text="Clockwise" />
+
+            <com.kyleduo.switchbutton.SwitchButton
+                android:id="@+id/sb_clockwise"
+                android:layout_marginLeft="24dp"
+                style="@style/SwitchButtonStyleMD"
+                android:layout_width="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content"
                 />
         </LinearLayout>
 

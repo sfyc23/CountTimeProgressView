@@ -66,6 +66,7 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
 
 
     private int mStartAngle = 0;
+    private boolean mIsClockwise = true;
     //view radius
     private float radius = 0;
 
@@ -112,6 +113,7 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
 
         //起始位置角度
         mStartAngle = (int) (attributes.getInteger(R.styleable.CountTimeProgressView_startAngle, mStartAngle) + 270) % 360;
+        mIsClockwise = attributes.getBoolean(R.styleable.CountTimeProgressView_clockwise, mIsClockwise);
 
         mTextStyle = attributes.getInteger(R.styleable.CountTimeProgressView_textStyle, TextStyle.JUMP);
         mCountTime = attributes.getInteger(R.styleable.CountTimeProgressView_countTime, 0);
@@ -228,7 +230,7 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
             case TextStyle.SECOND:
 //                displayText = (int) (mCountTime * (1 - mCurrentValue) / 1000) + "s";
                 if (mTitleCenter.contains("%")) {
-                    displayText = String.format(mTitleCenter, (int)(mCountTime * (1 - mCurrentValue) / 1000));
+                    displayText = String.format(mTitleCenter, (int) (mCountTime * (1 - mCurrentValue) / 1000));
                 } else {
                     displayText = (int) (mCountTime * (1 - mCurrentValue) / 1000) + "s";
                 }
@@ -288,7 +290,13 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
             radius = mCanvasCenterWidth - mBorderWidth;
         }
         mPath.reset();
-        mPath.addCircle(0, 0, radius, Path.Direction.CW);
+        if (!mIsClockwise) {
+            mPath.addCircle(0, 0, radius, Path.Direction.CCW);
+        } else {
+            mPath.addCircle(0, 0, radius, Path.Direction.CW);
+        }
+
+
         mPathMeasure.setPath(mPath, false);
         mLength = mPathMeasure.getLength();
     }
@@ -402,6 +410,11 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
     public void setStartAngle(int startAngle) {
         startAngle = (startAngle + 270) % 360;
         this.mStartAngle = startAngle;
+        invalidate();
+    }
+    public void setClockwise(boolean clockwise){
+        this.mIsClockwise = clockwise;
+        calcRadius();
         invalidate();
     }
 

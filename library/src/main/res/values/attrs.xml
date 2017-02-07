@@ -12,6 +12,8 @@
         <attr name="markBallFlag" format="boolean" />
 
         <attr name="startAngle" format="integer" />
+        <attr name="clockwise" format="boolean" />
+
         <attr name="countTime" format="integer"/>
 
         <attr name="textStyle" format="enum">
