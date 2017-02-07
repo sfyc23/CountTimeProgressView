@@ -18,8 +18,7 @@
             android:id="@+id/countTimeProgressView"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="20dp"/>
+            />
 
         <LinearLayout style="@style/Linear_common">
 

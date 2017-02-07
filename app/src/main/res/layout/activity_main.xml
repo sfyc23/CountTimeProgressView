@@ -30,7 +30,7 @@
         app:titleCenterSize="12sp"
         app:countTime="5000"
         app:textStyle="jump"
-        app:clockwise="false"
+        app:clockwise="true"
         />
 
 </RelativeLayout>

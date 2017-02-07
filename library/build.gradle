@@ -3,7 +3,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 // This is the library version used when deploying the artifact.
-version = "1.0.0"
+version = "1.1.0"
 
 android {
     compileSdkVersion 25
@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -34,6 +34,12 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.0.1'
     testCompile 'junit:junit:4.12'
+}
+
+android {
+    lintOptions {
+        abortOnError false
+    }
 }
 
 def siteUrl = 'https://github.com/sfyc23/CountTimeProgressView'      // 项目的主页
@@ -94,6 +100,7 @@ bintray {
     key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
     pkg {
+        userOrg = "sfyc58"
         repo = "maven"
         name = "CountTimeProgressView"   //发布到JCenter上的项目名字
         websiteUrl = siteUrl

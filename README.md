@@ -17,7 +17,7 @@ Include the library as a local library project or add the dependency in your bui
 
 ```groovy
 dependencies {
-    compile 'com.sfyc.ctpv:1.0.0'
+    compile 'com.sfyc.ctpv:library:1.1.0'
 }
 ```
 
@@ -39,10 +39,11 @@ Include the CountTimeProgressView widget in your layout. And you can customize i
         app:markBallFlag="true"
         app:markBallWidth="2dp"
         app:titleCenterColor="#000000"
-        app:titleCenterSize="8sp"
-        app:countTime="5000"
-        app:textStyle="second"
         app:titleCenter="跳过"
+        app:titleCenterSize="12sp"
+        app:countTime="5000"
+        app:textStyle="jump"
+        app:clockwise="false"
         />
 ```
 ### Step 3
@@ -59,7 +60,8 @@ You can write some animation codes to the callbacks such as setOnCheckedChangeLi
     countTimeProgressView.setMarkBallFlag(true);
     countTimeProgressView.setMarkBallWidth(4);
     countTimeProgressView.setMarkBallColor(Color.GREEN);
-
+    countTimeProgressView.setTitleCenter("跳过（%s）s");
+     countTimeProgressView.setClockwise(true);
     countTimeProgressView.addOnEndListener(new CountTimeProgressView.OnEndListener() {
         @Override
         public void onAnimationEnd() {
@@ -75,7 +77,9 @@ You can write some animation codes to the callbacks such as setOnCheckedChangeLi
             }
         }
     });
+
     countTimeProgressView.startCountTimeAnimation();
+
 ```
 
 ## Customization
@@ -100,7 +104,11 @@ Please feel free to :)
 | titleCenterSize | dimension | Center text size , default is 16sp.
 
 ## Change Log
-1.2.1 (2016-12-20)
+
+1.1.0 (2017-2-7)
+update anim colckWise
+
+1.0.0 (2016-12-20)
 First commit
 
 ## Demo
@@ -116,6 +124,6 @@ Inspired by
 
 
   [1]: http://oihnadz1x.bkt.clouddn.com/CountTimeProgressView01.png
-  [2]: https://github.com/sfyc23/CountTimeProgressView/download/app-debug.apk
+  [2]: http://fir.im/ctpv58
   [3]: https://github.com/tangqi92
   [4]: https://github.com/tangqi92/WaveLoadingView
