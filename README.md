@@ -4,14 +4,14 @@
 
 
 ## Sample
-![页面截图][1]
+![页面动图][1]
 
 
   ## Usage
 
 **For a working implementation of this project see the `app/` folder.**
 
-### Step 1
+###  1
 
 Include the library as a local library project or add the dependency in your build.gradle.
 
@@ -34,16 +34,18 @@ Include the CountTimeProgressView widget in your layout. And you can customize i
         android:layout_height="40dp"
         android:layout_alignParentRight="true"
         app:background_Color="#FF7F00"
-        app:borderWidth="1dp"
+        app:borderWidth="3dp"
+        app:borderBottomColor="#D60000"
+        app:borderDrawColor="#CDC8EA"
         app:markBallColor="#002FFF"
         app:markBallFlag="true"
-        app:markBallWidth="2dp"
+        app:markBallWidth="3dp"
         app:titleCenterColor="#000000"
         app:titleCenter="跳过"
-        app:titleCenterSize="12sp"
+        app:titleCenterSize="14sp"
         app:countTime="5000"
         app:textStyle="jump"
-        app:clockwise="false"
+        app:clockwise="true"
         />
 ```
 ### Step 3
@@ -61,7 +63,7 @@ You can write some animation codes to the callbacks such as setOnCheckedChangeLi
     countTimeProgressView.setMarkBallWidth(4);
     countTimeProgressView.setMarkBallColor(Color.GREEN);
     countTimeProgressView.setTitleCenter("跳过（%s）s");
-     countTimeProgressView.setClockwise(true);
+    countTimeProgressView.setClockwise(true);
     countTimeProgressView.addOnEndListener(new CountTimeProgressView.OnEndListener() {
         @Override
         public void onAnimationEnd() {
@@ -112,18 +114,17 @@ update anim colckWise
 First commit
 
 ## Demo
-[Download][2]
+[Download][3]
 
 
 ## Thanks
 
 Inspired by
 
-[tangqi92][3] created by [WaveLoadingView][4]
+[tangqi92][4] created by [WaveLoadingView][5]
 
 
-
-  [1]: http://oihnadz1x.bkt.clouddn.com/CountTimeProgressView01.png
-  [2]: http://fir.im/ctpv58
-  [3]: https://github.com/tangqi92
-  [4]: https://github.com/tangqi92/WaveLoadingView
+  [1]: http://oihnadz1x.bkt.clouddn.com/ezgif.com-video-to-gif.gif
+  [3]: http://fir.im/ctpv58
+  [4]: https://github.com/tangqi92
+  [5]: https://github.com/tangqi92/WaveLoadingView

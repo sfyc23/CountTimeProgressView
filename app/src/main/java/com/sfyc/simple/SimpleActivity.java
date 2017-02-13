@@ -45,11 +45,13 @@ public class SimpleActivity extends AppCompatActivity {
                                 switch (which) {
                                     case 0:
                                         countTimeProgressView.setTextStyle(CountTimeProgressView.TextStyle.JUMP);
+                                        countTimeProgressView.setTitleCenter("跳过");
                                         countTimeProgressView.startCountTimeAnimation();
                                         dialog.dismiss();
                                         break;
                                     case 1:
                                         countTimeProgressView.setTextStyle(CountTimeProgressView.TextStyle.SECOND);
+                                        countTimeProgressView.setTitleCenter("跳过（%s）s");
                                         countTimeProgressView.startCountTimeAnimation();
                                         dialog.dismiss();
                                         break;
