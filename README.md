@@ -124,7 +124,7 @@ Inspired by
 [tangqi92][4] created by [WaveLoadingView][5]
 
 
-  [1]: http://oihnadz1x.bkt.clouddn.com/ctpv-video-to-gif.gif
+  [1]: https://github.com/sfyc23/CountTimeProgressView/blob/master/screenshot/ctpv-video-to-gif.gif
   [3]: http://fir.im/ctpv58
   [4]: https://github.com/tangqi92
   [5]: https://github.com/tangqi92/WaveLoadingView
