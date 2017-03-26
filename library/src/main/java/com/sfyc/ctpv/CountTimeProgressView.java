@@ -19,6 +19,9 @@ import android.util.Log;
 import android.view.View;
 
 public class CountTimeProgressView extends View implements View.OnClickListener {
+
+    private final static String TAG = "CountTimeProgressView";
+
     private Context mContext;
 
     private Path mPath;
@@ -197,6 +200,15 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
 
             }
         });
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        Log.e(TAG,"onDetachedFromWindow");
+        if (isRunning()) {
+            cancelCountTimeAnimation();
+        }
     }
 
 
@@ -499,6 +511,7 @@ public class CountTimeProgressView extends View implements View.OnClickListener 
          */
         public static final int NONE = 3;
     }
+
 
 }
 

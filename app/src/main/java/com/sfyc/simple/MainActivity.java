@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(long overageTime) {
+                countTimeProgressView.cancelCountTimeAnimation();
                 startActivity(new Intent(MainActivity.this,SimpleActivity.class));
                 finish();
             }
@@ -37,11 +38,12 @@ public class MainActivity extends AppCompatActivity {
         });
         countTimeProgressView.startCountTimeAnimation();
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (countTimeProgressView != null && countTimeProgressView.isRunning()) {
-            countTimeProgressView.cancelCountTimeAnimation();
-        }
+//        if (countTimeProgressView != null && countTimeProgressView.isRunning()) {
+//            countTimeProgressView.cancelCountTimeAnimation();
+//        }
     }
 }
