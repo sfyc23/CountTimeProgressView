@@ -1,4 +1,9 @@
-﻿# CountTimeProgressView
+﻿[![twitter](https://img.shields.io/badge/twitter-sfyc23-blue.svg)](https://twitter.com/sfyc23)
+[![微博](https://img.shields.io/badge/%E5%BE%AE%E5%8D%9A-sfyc23-blue.svg)](https://weibo.com/sfyc23)
+[![API](https://img.shields.io/badge/API-8%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=8)
+[![Maven Central](https://img.shields.io/badge/Maven%20Central-1.1.3-green.svg)]()
+[![License](https://img.shields.io/badge/License-Apache%202.0-red.svg)]()
+# CountTimeProgressView
 
 **CountTimeProgressView** - An Android library that provides a count time circular progress view effect.
 
