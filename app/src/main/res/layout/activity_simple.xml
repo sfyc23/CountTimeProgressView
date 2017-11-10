@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
     android:paddingTop="16dp">
 
     <LinearLayout
@@ -46,6 +44,7 @@
                 android:id="@+id/seek_bar_countTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 app:dsb_indicatorColor="@color/colorPrimary"
                 app:dsb_max="100"
                 app:dsb_min="1"
@@ -63,6 +62,7 @@
                 android:id="@+id/seek_bar_start_angle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 app:dsb_indicatorColor="@color/colorPrimary"
                 app:dsb_max="360"
                 app:dsb_min="0"

@@ -14,13 +14,13 @@
         android:src="@mipmap/peaty" />
 
     <com.sfyc.ctpv.CountTimeProgressView
-        android:id="@+id/countTimeProgressView"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:id="@+id/countTimeProgressView1"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
         android:layout_alignParentRight="true"
-        app:background_Color="#FF7F00"
+        app:backgroundColorCenter="#FF7F00"
         app:borderWidth="3dp"
         app:borderBottomColor="#D60000"
         app:borderDrawColor="#CDC8EA"
@@ -28,9 +28,10 @@
         app:markBallFlag="true"
         app:markBallWidth="3dp"
         app:titleCenterColor="#000000"
-        app:titleCenter="跳过"
+        app:titleCenterText="点击跳过"
         app:titleCenterSize="14sp"
         app:countTime="5000"
+        app:startAngle="0"
         app:textStyle="jump"
         app:clockwise="true"
         />
