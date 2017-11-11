@@ -28,9 +28,6 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(new Intent(SplashActivity.this, SimpleActivity.class));
                 finish();
             }
-//            gradlew install
-//            gradlew bintrayUpload
-
             @Override
             public void onClick(long overageTime) {
                 countTimeProgressView.cancelCountTimeAnimation();
@@ -39,7 +36,27 @@ public class SplashActivity extends AppCompatActivity {
             }
 
         });
+
+/*        countTimeProgressView.setBackgroundColorCenter(Color.WHITE);
+        countTimeProgressView.setBorderWidth(3);
+        countTimeProgressView.setBorderBottomColor(Color.GRAY);
+        countTimeProgressView.setBorderDrawColor(Color.RED);
+        countTimeProgressView.setMarkBallColor(Color.GREEN);
+
+        countTimeProgressView.setMarkBallFlag(true);
+        countTimeProgressView.setMarkBallWidth(4);
+        countTimeProgressView.setTitleCenterText("");
+        countTimeProgressView.setTitleCenterTextSize(16);
+        countTimeProgressView.setTitleCenterTextColor(Color.BLACK);
+
+        countTimeProgressView.setCountTime(5000L);
+        countTimeProgressView.setStartAngle(0);
+        countTimeProgressView.setTextStyle(CountTimeProgressView.TextStyle.INSTANCE.getCLOCK());
+        countTimeProgressView.setClockwise(true);*/
+
         countTimeProgressView.startCountTimeAnimation();
+        //            gradlew install
+//            gradlew bintrayUpload
     }
 
     @Override

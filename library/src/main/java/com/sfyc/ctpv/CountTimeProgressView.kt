@@ -531,7 +531,6 @@ class CountTimeProgressView
         private val DEFAULT_TITLE_CENTER_COLOR = Color.parseColor("#FFFFFF")
         private val DEFAULT_TITLE_CENTER_SIZE = 16f
 
-
     }
 }
 
