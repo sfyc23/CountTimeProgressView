@@ -1,0 +1,66 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+      - '*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Resolve release version
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="${GITHUB_REF_NAME#v}"
+          echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
+
+      - name: Build release artifacts
+        run: ./gradlew clean :library:assembleRelease :library:publishReleasePublicationToMavenLocal -PLIBRARY_VERSION="$VERSION" -x test
+
+      - name: Collect release artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          ARTIFACT_ID="counttimeprogressview"
+          MAVEN_DIR="$HOME/.m2/repository/com/sfyc/ctpv/${ARTIFACT_ID}/${VERSION}"
+          mkdir -p release-artifacts
+          cp "library/build/outputs/aar/library-release.aar" "release-artifacts/${ARTIFACT_ID}-${VERSION}.aar"
+          cp "${MAVEN_DIR}/${ARTIFACT_ID}-${VERSION}-sources.jar" "release-artifacts/"
+          cp "${MAVEN_DIR}/${ARTIFACT_ID}-${VERSION}.pom" "release-artifacts/"
+          cp "${MAVEN_DIR}/${ARTIFACT_ID}-${VERSION}.module" "release-artifacts/"
+          (cd release-artifacts && zip "${ARTIFACT_ID}-${VERSION}.zip" *)
+
+      - name: Create or update GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" release-artifacts/* --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" release-artifacts/* \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "CountTimeProgressView ${VERSION}" \
+              --generate-notes
+          fi

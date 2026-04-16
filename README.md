@@ -223,6 +223,23 @@ countTimeProgressView.startCountTimeAnimation();
 - **Jetpack Compose adapter**: `CountTimeProgressViewCompose.create(context) { ... }` for use in `AndroidView`
 - **Zero library dependencies**: library module has no runtime dependency on AppCompat
 
+## GitHub Release
+
+GitHub Releases are generated automatically when a version tag is pushed.
+
+```bash
+git tag v2.1.1
+git push origin v2.1.1
+```
+
+The release workflow strips the optional `v` prefix and builds the library with that version. It uploads:
+
+- `counttimeprogressview-<version>.aar`
+- `counttimeprogressview-<version>-sources.jar`
+- `counttimeprogressview-<version>.pom`
+- `counttimeprogressview-<version>.module`
+- `counttimeprogressview-<version>.zip`
+
 ## Customization
 
 Please feel free to :)

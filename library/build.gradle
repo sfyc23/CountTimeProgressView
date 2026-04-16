@@ -8,7 +8,7 @@ if (project.hasProperty('signing.keyId')) {
     apply plugin: 'signing'
 }
 
-version = '2.1.0'
+version = findProperty('LIBRARY_VERSION') ?: '2.1.0'
 group = 'com.sfyc.ctpv'
 
 android {
@@ -19,7 +19,7 @@ android {
         minSdk rootProject.ext.min_sdk_version
         targetSdk rootProject.ext.target_sdk_version
         versionCode 5
-        versionName '2.1.0'
+        versionName project.version.toString()
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
