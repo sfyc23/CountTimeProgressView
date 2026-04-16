@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">CountTimeProgressView</string>
+
+    <!-- Tab 标题 -->
+    <string name="tab_java_xml">Java+XML</string>
+    <string name="tab_kotlin_xml">Kotlin+XML</string>
+    <string name="tab_compose">Compose</string>
+
+    <!-- 导航首页 -->
+    <string name="main_title">CountTimeProgressView Demo</string>
+    <string name="nav_basic_styles">基础样式展示</string>
+    <string name="nav_basic_styles_desc">textStyle / 外观参数 / 渐变色</string>
+    <string name="nav_animation">动画控制</string>
+    <string name="nav_animation_desc">开始 / 暂停 / 恢复 / 重置 / 实时状态</string>
+    <string name="nav_advanced">高级功能</string>
+    <string name="nav_advanced_desc">阈值提醒 / 跳过延迟 / 自定义格式化 / 指定进度</string>
+    <string name="nav_ad_skip">场景：广告跳过</string>
+    <string name="nav_ad_skip_desc">真实闪屏广告跳过场景</string>
+    <string name="nav_verify_code">场景：验证码倒计时</string>
+    <string name="nav_verify_code_desc">发送验证码后的倒计时按钮</string>
+    <string name="nav_resume">场景：进度恢复</string>
+    <string name="nav_resume_desc">从服务器剩余时间恢复 / 屏幕旋转恢复</string>
+    <string name="nav_exam">场景：考试计时器</string>
+    <string name="nav_exam_desc">长时间倒计时 + 警告 + 暂停恢复</string>
 </resources>

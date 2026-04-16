@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!-- Material Design 3 主色调 -->
+    <color name="colorPrimary">#6750A4</color>
+    <color name="colorPrimaryDark">#21005D</color>
+    <color name="colorAccent">#6750A4</color>
+
+    <!-- 页面与卡片背景 -->
+    <color name="background_page">#FAFAFA</color>
+    <color name="background_card">#FFFFFF</color>
+
+    <!-- 文字颜色 -->
+    <color name="text_primary">#1C1B1F</color>
+    <color name="text_secondary">#49454F</color>
+
+    <!-- 渐变色 -->
+    <color name="gradient_start">#FF6B6B</color>
+    <color name="gradient_end">#4ECDC4</color>
+
+    <!-- 状态色 -->
+    <color name="warning">#FF3B30</color>
+    <color name="success">#4CAF50</color>
+
+    <!-- Tab 颜色 -->
+    <color name="tab_selected">#6750A4</color>
+    <color name="tab_unselected">#79747E</color>
 </resources>

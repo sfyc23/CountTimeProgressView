@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 考试计时器场景布局：大号 CLOCK 控件 + 状态信息 + 暂停/继续按钮 + 日志 -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 200dp 超大号 CLOCK 模式倒计时控件 -->
+        <com.sfyc.ctpv.CountTimeProgressView
+            android:id="@+id/ctpv_exam"
+            android:layout_width="200dp"
+            android:layout_height="200dp" />
+
+        <!-- 考试状态文字 -->
+        <TextView
+            android:id="@+id/tv_exam_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
+            android:text="考试状态: 未开始"
+            android:textSize="16sp" />
+
+        <!-- 控制按钮 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_start_exam"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:text="开始考试" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_pause_exam"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:text="暂停考试" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_resume_exam"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="继续考试" />
+        </LinearLayout>
+
+        <!-- 提醒日志 -->
+        <TextView
+            android:id="@+id/tv_exam_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="#F5F5F5"
+            android:fontFamily="monospace"
+            android:minHeight="120dp"
+            android:padding="12dp"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</ScrollView>

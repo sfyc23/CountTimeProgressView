@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 广告跳过场景布局：模拟广告区域 + 跳过倒计时控件 + 状态面板 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 模拟广告区域 -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#E8DEF8">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="广告内容区域"
+            android:textColor="#6750A4"
+            android:textSize="20sp" />
+
+        <!-- 右上角倒计时跳过控件 -->
+        <com.sfyc.ctpv.CountTimeProgressView
+            android:id="@+id/ctpv_ad"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:backgroundColorCenter="#88000000"
+            app:borderWidth="3dp"
+            app:borderBottomColor="#80FFFFFF"
+            app:borderDrawColor="#FFFFFF"
+            app:markBallFlag="true"
+            app:markBallWidth="3dp"
+            app:markBallColor="#FFFFFF"
+            app:titleCenterColor="#FFFFFF"
+            app:titleCenterText="跳过"
+            app:titleCenterSize="11sp"
+            app:countTime="5000"
+            app:textStyle="jump"
+            app:strokeCap="round"
+            app:clickableAfter="2000"
+            app:disabledText="广告"
+            app:finishedText="进入" />
+    </FrameLayout>
+
+    <!-- 底部配置面板 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="状态: 等待开始"
+            android:textSize="14sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_replay"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="重新演示" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,9 +1,34 @@
-*.iml
-.gradle
+# Gradle
+.gradle/
+/build/
+**/build/
+
+# Local configuration
 /local.properties
+local.properties
+
+# Android Studio / IntelliJ
+*.iml
 /.idea/workspace.xml
-/.idea/libraries
+/.idea/libraries/
+/.idea/caches/
+/.idea/modules.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.vscode/
+
+# Android build artifacts
+/captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.ap_
+*.aab
+*.dex
+
+# OS files
 .DS_Store
-/build
-/captures
-.externalNativeBuild
+Thumbs.db
+
+# AI tooling
+/.AI

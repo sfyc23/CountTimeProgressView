@@ -27,5 +27,25 @@
         <attr name="titleCenterColor" format="color"/>
         <attr name="titleCenterSize" format="dimension" />
 
+        <!-- 2.0 新增属性 -->
+        <attr name="autoStart" format="boolean" />
+        <attr name="finishedText" format="string" />
+        <attr name="showCenterText" format="boolean" />
+        <attr name="strokeCap" format="enum">
+            <enum name="butt" value="0" />
+            <enum name="round" value="1" />
+            <enum name="square" value="2" />
+        </attr>
+        <attr name="gradientStartColor" format="color" />
+        <attr name="gradientEndColor" format="color" />
+
+        <!-- v2.1 新增属性：阈值提醒 -->
+        <attr name="warningTime" format="integer" />
+        <attr name="warningColor" format="color" />
+
+        <!-- v2.1 新增属性：跳过延迟 -->
+        <attr name="clickableAfter" format="integer" />
+        <attr name="disabledText" format="string" />
+
     </declare-styleable>
 </resources>

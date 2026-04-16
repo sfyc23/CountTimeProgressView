@@ -1,39 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 闪屏页布局：全屏背景 + 右上角倒计时跳过控件 + 底部版本信息 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
+    <!-- 背景图 -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@null"
         android:scaleType="centerCrop"
         android:src="@mipmap/peaty" />
 
+    <!-- 右上角倒计时跳过控件 -->
     <com.sfyc.ctpv.CountTimeProgressView
         android:id="@+id/countTimeProgressView1"
-        android:paddingTop="16dp"
-        android:paddingRight="16dp"
         android:layout_width="84dp"
         android:layout_height="84dp"
-        android:layout_alignParentRight="true"
-        app:backgroundColorCenter="#FF7F00"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        app:backgroundColorCenter="#88000000"
         app:borderWidth="3dp"
-        app:borderBottomColor="#D60000"
-        app:borderDrawColor="#CDC8EA"
-        app:markBallColor="#002FFF"
+        app:borderBottomColor="#80FFFFFF"
+        app:borderDrawColor="#FFFFFF"
+        app:markBallColor="#FFFFFF"
         app:markBallFlag="true"
         app:markBallWidth="3dp"
-        app:titleCenterColor="#000000"
-        app:titleCenterText="点击跳过"
-        app:titleCenterSize="14sp"
+        app:titleCenterColor="#FFFFFF"
+        app:titleCenterText="跳过"
+        app:titleCenterSize="11sp"
         app:countTime="5000"
-        app:startAngle="0"
         app:textStyle="jump"
-        app:clockwise="true"
-        />
+        app:strokeCap="round"
+        app:clickableAfter="2000"
+        app:disabledText="请稍候"
+        app:finishedText="进入" />
+
+    <!-- 底部版本信息 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="48dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CountTimeProgressView"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="v2.1.0"
+            android:textColor="#B0FFFFFF"
+            android:textSize="14sp" />
+    </LinearLayout>
 
 </RelativeLayout>

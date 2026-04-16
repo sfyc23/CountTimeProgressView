@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 进度恢复场景布局：倒计时控件 + 剩余时间滑块 + 控制按钮 + 日志 -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 大号 CLOCK 模式倒计时控件 -->
+        <com.sfyc.ctpv.CountTimeProgressView
+            android:id="@+id/ctpv_resume"
+            android:layout_width="160dp"
+            android:layout_height="160dp" />
+
+        <!-- 模拟服务器数据：剩余时间滑块 -->
+        <com.google.android.material.card.MaterialCardView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="模拟服务器数据"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="剩余时间:"
+                        android:textSize="14sp" />
+
+                    <SeekBar
+                        android:id="@+id/seek_remaining"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:max="60"
+                        android:progress="42" />
+
+                    <TextView
+                        android:id="@+id/tv_remaining_val"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="42s"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 控制按钮 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_from_remaining"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="从剩余时间恢复" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_from_50"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="从50%进度恢复" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_rotate_hint"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="屏幕旋转恢复提示" />
+
+        <!-- 状态日志 -->
+        <TextView
+            android:id="@+id/tv_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="#F5F5F5"
+            android:fontFamily="monospace"
+            android:minHeight="100dp"
+            android:padding="12dp"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</ScrollView>
