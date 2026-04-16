@@ -1,7 +1,7 @@
 ﻿[![twitter](https://img.shields.io/badge/twitter-sfyc23-blue.svg)](https://twitter.com/sfyc23)
 [![微博](https://img.shields.io/badge/%E5%BE%AE%E5%8D%9A-sfyc23-blue.svg)](https://weibo.com/sfyc23)
 [![API](https://img.shields.io/badge/API-%2B21-green.svg)](https://android-arsenal.com/api?level=21)
-[![Maven Central](https://img.shields.io/badge/Maven%20Central-2.1.0-green.svg)]()
+[![](https://jitpack.io/v/sfyc23/CountTimeProgressView.svg)](https://jitpack.io/#sfyc23/CountTimeProgressView)
 [![License](https://img.shields.io/badge/License-Apache%202.0-red.svg)]()
 # CountTimeProgressView
 
@@ -19,11 +19,26 @@
 
 ### Step 1
 
-Include the library as a local library project or add the dependency in your build.gradle.
+Include the library as a local library project or add the JitPack dependency.
+
+Add JitPack to your repositories:
+
+```groovy
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+Add the dependency in your app/module build.gradle:
 
 ```groovy
 dependencies {
-    implementation 'com.sfyc.ctpv:counttimeprogressview:2.1.0'
+    implementation 'com.github.sfyc23:CountTimeProgressView:2.1.0'
 }
 ```
 
