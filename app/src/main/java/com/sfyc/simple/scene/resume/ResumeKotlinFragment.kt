@@ -1,6 +1,7 @@
 package com.sfyc.simple.scene.resume
 
 import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +12,6 @@ import androidx.fragment.app.Fragment
 import com.sfyc.ctpv.CountTimeProgressView
 import com.sfyc.simple.R
 
-/**
- * 进度恢复场景 — Kotlin + XML 实现。
- *
- * 展示从服务器剩余时间恢复倒计时的 Kotlin 惯用写法。
- */
 class ResumeKotlinFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
@@ -27,7 +23,6 @@ class ResumeKotlinFragment : Fragment() {
         val tvRemaining = view.findViewById<TextView>(R.id.tv_remaining_val)
         val seekRemaining = view.findViewById<SeekBar>(R.id.seek_remaining)
 
-        // Kotlin with DSL 配置
         with(ctpv) {
             countTime = 60_000L
             textStyle = CountTimeProgressView.TEXT_STYLE_CLOCK
@@ -38,7 +33,7 @@ class ResumeKotlinFragment : Fragment() {
             backgroundColorCenter = Color.WHITE
             titleCenterTextColor = Color.parseColor("#1C1B1F")
             markBallFlag = false
-            strokeCap = android.graphics.Paint.Cap.ROUND
+            strokeCap = Paint.Cap.ROUND
             bindLifecycle(viewLifecycleOwner)
 
             setOnStateChangedListener { state ->
@@ -50,7 +45,6 @@ class ResumeKotlinFragment : Fragment() {
             }
         }
 
-        // 剩余时间滑块
         seekRemaining.max = 60
         seekRemaining.progress = 42
         tvRemaining.text = "42s"
@@ -58,27 +52,25 @@ class ResumeKotlinFragment : Fragment() {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser) tvRemaining.text = "${progress}s"
             }
-            override fun onStartTrackingTouch(seekBar: SeekBar) {}
-            override fun onStopTrackingTouch(seekBar: SeekBar) {}
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) = Unit
+            override fun onStopTrackingTouch(seekBar: SeekBar) = Unit
         })
 
-        // 从服务器剩余时间恢复
         view.findViewById<View>(R.id.btn_from_remaining).setOnClickListener {
             val remaining = seekRemaining.progress * 1000L
-            tvLog.text = "→ startFromRemaining(${remaining}ms)\n"
+            tvLog.text = "${getString(R.string.log_start_from_remaining, remaining)}\n"
             ctpv.startCountTimeAnimationFromRemaining(remaining)
         }
 
-        // 从 50% 进度恢复
         view.findViewById<View>(R.id.btn_from_50).setOnClickListener {
-            tvLog.text = "→ startCountTimeAnimation(0.5f)\n"
+            tvLog.text = "${getString(R.string.log_start_from_half)}\n"
             ctpv.startCountTimeAnimation(0.5f)
         }
 
-        // 屏幕旋转恢复提示
         view.findViewById<View>(R.id.btn_rotate_hint).setOnClickListener {
-            tvLog.append("提示: 先开始倒计时，然后旋转屏幕，进度将自动恢复\n")
-            tvLog.append("（SavedState 机制，无需额外代码）\n")
+            tvLog.append("${getString(R.string.log_rotation_hint_line_1)}\n")
+            tvLog.append("${getString(R.string.log_rotation_hint_line_2)}\n")
         }
     }
 }

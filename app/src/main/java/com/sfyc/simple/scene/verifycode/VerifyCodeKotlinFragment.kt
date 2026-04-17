@@ -10,11 +10,6 @@ import androidx.fragment.app.Fragment
 import com.sfyc.ctpv.CountTimeProgressView
 import com.sfyc.simple.R
 
-/**
- * 验证码倒计时场景 — Kotlin + XML 实现。
- *
- * 与 [VerifyCodeJavaFragment] 功能一致，展示 Kotlin with DSL 风格。
- */
 class VerifyCodeKotlinFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
@@ -29,31 +24,27 @@ class VerifyCodeKotlinFragment : Fragment() {
         with(ctpv) {
             bindLifecycle(viewLifecycleOwner)
 
-            // 每秒 Tick 回调
             setOnTickListener { _, remainingSeconds ->
-                btnResend.text = "重新发送 (${remainingSeconds}s)"
+                btnResend.text = getString(R.string.action_resend_with_seconds, remainingSeconds)
                 tvLog.append("Tick: ${remainingSeconds}s\n")
             }
 
-            // 警告回调
-            setOnWarningListener { _ ->
-                tvLog.append("⚠ 最后10秒！\n")
+            setOnWarningListener {
+                tvLog.append("${getString(R.string.log_warning_last_10_seconds)}\n")
             }
 
-            // 倒计时结束
             setOnCountdownEndListener {
                 btnResend.isEnabled = true
-                btnResend.text = "重新发送"
-                tvLog.append("✅ 倒计时结束，可重新发送\n")
+                btnResend.text = getString(R.string.action_resend)
+                tvLog.append("${getString(R.string.log_countdown_finished_resend)}\n")
             }
         }
 
-        // 发送验证码
         btnSend.setOnClickListener {
             tvLog.text = ""
-            tvLog.append("→ 发送验证码...\n")
+            tvLog.append("${getString(R.string.log_sending_code)}\n")
             btnResend.isEnabled = false
-            btnResend.text = "重新发送 (60s)"
+            btnResend.text = getString(R.string.action_resend_initial)
             ctpv.startCountTimeAnimation()
         }
     }

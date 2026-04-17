@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,16 +36,11 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.Fragment
 import com.sfyc.ctpv.CountTimeProgressView
 import com.sfyc.ctpv.CountTimeProgressViewCompose
+import com.sfyc.simple.R
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-/**
- * 考试计时器场景 — Kotlin + Compose 实现。
- *
- * 展示 Compose 风格的长时间倒计时场景，
- * 通过 State 桥接考试状态和日志。
- */
 class ExamComposeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
         ComposeView(requireContext()).apply {
@@ -57,8 +53,9 @@ private fun ExamScreen() {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     val sdf = remember { SimpleDateFormat("HH:mm:ss", Locale.getDefault()) }
+    val initialStatus = stringResource(R.string.exam_status_not_started)
 
-    var statusText by remember { mutableStateOf("考试状态: 未开始") }
+    var statusText by remember(initialStatus) { mutableStateOf(initialStatus) }
     var logText by remember { mutableStateOf("") }
     var viewRef by remember { mutableStateOf<CountTimeProgressView?>(null) }
 
@@ -68,7 +65,6 @@ private fun ExamScreen() {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // 超大号 CLOCK 倒计时控件
         AndroidView(
             factory = { ctx ->
                 CountTimeProgressViewCompose.create(ctx) {
@@ -89,20 +85,20 @@ private fun ExamScreen() {
 
                     setOnStateChangedListener { state ->
                         statusText = when (state.name) {
-                            "RUNNING" -> "考试状态: 进行中"
-                            "PAUSED" -> "考试状态: 已暂停"
-                            "FINISHED" -> "考试状态: 已结束"
-                            else -> "考试状态: ${state.name}"
+                            "RUNNING" -> ctx.getString(R.string.exam_status_running)
+                            "PAUSED" -> ctx.getString(R.string.exam_status_paused)
+                            "FINISHED" -> ctx.getString(R.string.exam_status_finished)
+                            else -> ctx.getString(R.string.exam_status_format, state.name)
                         }
                     }
 
-                    setOnWarningListener { _ ->
-                        logText += "${sdf.format(Date())} ⚠ 还剩1分钟！\n"
+                    setOnWarningListener {
+                        logText += "${sdf.format(Date())} ${ctx.getString(R.string.log_exam_one_minute_left)}\n"
                     }
 
                     setOnCountdownEndListener {
-                        logText += "${sdf.format(Date())} 考试时间到，自动提交\n"
-                        Toast.makeText(ctx, "考试结束", Toast.LENGTH_SHORT).show()
+                        logText += "${sdf.format(Date())} ${ctx.getString(R.string.log_exam_time_up)}\n"
+                        Toast.makeText(ctx, ctx.getString(R.string.toast_exam_finished), Toast.LENGTH_SHORT).show()
                     }
                 }.also { viewRef = it }
             },
@@ -113,34 +109,35 @@ private fun ExamScreen() {
         Text(statusText, fontFamily = FontFamily.Monospace, fontSize = 16.sp)
         Spacer(modifier = Modifier.height(12.dp))
 
-        // 控制按钮
-        Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
             FilledTonalButton(
                 onClick = {
-                    logText = "${sdf.format(Date())} 考试开始\n"
+                    logText = "${sdf.format(Date())} ${context.getString(R.string.log_exam_started)}\n"
                     viewRef?.startCountTimeAnimation()
                 },
                 modifier = Modifier.weight(1f)
-            ) { Text("开始", fontSize = 12.sp) }
+            ) { Text(stringResource(R.string.action_start_exam), fontSize = 12.sp) }
             FilledTonalButton(
                 onClick = {
                     viewRef?.pauseCountTimeAnimation()
-                    logText += "${sdf.format(Date())} 考试暂停\n"
+                    logText += "${sdf.format(Date())} ${context.getString(R.string.log_exam_paused)}\n"
                 },
                 modifier = Modifier.weight(1f)
-            ) { Text("暂停", fontSize = 12.sp) }
+            ) { Text(stringResource(R.string.action_pause_exam), fontSize = 12.sp) }
             FilledTonalButton(
                 onClick = {
                     viewRef?.resumeCountTimeAnimation()
-                    logText += "${sdf.format(Date())} 考试继续\n"
+                    logText += "${sdf.format(Date())} ${context.getString(R.string.log_exam_resumed)}\n"
                 },
                 modifier = Modifier.weight(1f)
-            ) { Text("继续", fontSize = 12.sp) }
+            ) { Text(stringResource(R.string.action_resume_exam), fontSize = 12.sp) }
         }
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // 提醒日志
         Text(
             logText,
             modifier = Modifier

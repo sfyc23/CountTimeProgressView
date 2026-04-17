@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 动画控制页布局：大倒计时控件 + 控制按钮 + 实时状态面板 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,7 +11,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- 160dp 大号倒计时控件 -->
         <com.sfyc.ctpv.CountTimeProgressView
             android:id="@+id/ctpv_anim"
             android:layout_width="160dp"
@@ -23,15 +22,14 @@
             android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
-            <!-- 四个控制按钮：开始 / 暂停 / 恢复 / 重置 -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_start"
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginEnd="4dp"
-                android:text="开始"
+                android:layout_weight="1"
+                android:text="@string/action_start"
                 android:textSize="12sp" />
 
             <com.google.android.material.button.MaterialButton
@@ -39,9 +37,9 @@
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginEnd="4dp"
-                android:text="暂停"
+                android:layout_weight="1"
+                android:text="@string/action_pause"
                 android:textSize="12sp" />
 
             <com.google.android.material.button.MaterialButton
@@ -49,9 +47,9 @@
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginEnd="4dp"
-                android:text="恢复"
+                android:layout_weight="1"
+                android:text="@string/action_resume"
                 android:textSize="12sp" />
 
             <com.google.android.material.button.MaterialButton
@@ -60,18 +58,16 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="重置"
+                android:text="@string/action_reset"
                 android:textSize="12sp" />
         </LinearLayout>
 
-        <!-- 实时状态面板 -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:cardCornerRadius="12dp"
-            app:cardElevation="1dp"
-            xmlns:app="http://schemas.android.com/apk/res-auto">
+            app:cardElevation="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -82,7 +78,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="实时状态面板"
+                    android:text="@string/panel_live_state"
                     android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
 
@@ -92,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="monospace"
-                    android:text="状态: IDLE"
+                    android:text="@string/status_idle"
                     android:textSize="14sp" />
 
                 <TextView
@@ -101,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="monospace"
-                    android:text="进度: 0.00 | 剩余: 10.0s"
+                    android:text="@string/progress_initial"
                     android:textSize="14sp" />
 
                 <TextView
@@ -110,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="monospace"
-                    android:text="Tick: --"
+                    android:text="@string/tick_placeholder"
                     android:textSize="14sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

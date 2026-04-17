@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 验证码倒计时场景布局：手机号 + 验证码输入 + 圆形倒计时 + 日志区域 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -11,11 +10,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="手机号: 138****8888"
+        android:text="@string/phone_masked"
         android:textColor="@color/text_primary"
         android:textSize="16sp" />
 
-    <!-- 验证码输入框 + 圆形倒计时控件 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="验证码">
+            android:hint="@string/hint_verification_code">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -35,27 +33,25 @@
                 android:maxLength="6" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- 圆形倒计时：60秒，最后10秒变红，不显示小球 -->
         <com.sfyc.ctpv.CountTimeProgressView
             android:id="@+id/ctpv_verify"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginStart="12dp"
-            app:textStyle="second"
-            app:titleCenterSize="13sp"
-            app:countTime="60000"
-            app:borderWidth="3dp"
-            app:borderDrawColor="@color/colorPrimary"
-            app:borderBottomColor="#E0E0E0"
             app:backgroundColorCenter="@color/background_page"
-            app:titleCenterColor="@color/text_primary"
+            app:borderBottomColor="#E0E0E0"
+            app:borderDrawColor="@color/colorPrimary"
+            app:borderWidth="3dp"
+            app:countTime="60000"
             app:markBallFlag="false"
             app:strokeCap="round"
-            app:warningTime="10000"
-            app:warningColor="@color/warning" />
+            app:textStyle="second"
+            app:titleCenterColor="@color/text_primary"
+            app:titleCenterSize="13sp"
+            app:warningColor="@color/warning"
+            app:warningTime="10000" />
     </LinearLayout>
 
-    <!-- 文字按钮形式的重发提示 -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_resend"
         style="@style/Widget.Material3.Button.TextButton"
@@ -63,27 +59,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:enabled="false"
-        android:text="重新发送 (60s)" />
+        android:text="@string/action_resend_initial" />
 
-    <!-- Tick 日志区域 -->
     <TextView
         android:id="@+id/tv_tick_log"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_marginTop="16dp"
+        android:layout_weight="1"
         android:background="#F5F5F5"
         android:fontFamily="monospace"
         android:padding="12dp"
         android:scrollbars="vertical"
         android:textSize="12sp" />
 
-    <!-- 发送验证码按钮 -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_send"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="发送验证码" />
+        android:text="@string/action_send_code" />
 
 </LinearLayout>

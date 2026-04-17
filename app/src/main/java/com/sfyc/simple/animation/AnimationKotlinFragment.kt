@@ -12,11 +12,6 @@ import androidx.fragment.app.Fragment
 import com.sfyc.ctpv.CountTimeProgressView
 import com.sfyc.simple.R
 
-/**
- * 动画控制页 — Kotlin + XML 实现。
- *
- * 展示 Kotlin with DSL 风格的属性批量配置方式。
- */
 class AnimationKotlinFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
@@ -28,7 +23,6 @@ class AnimationKotlinFragment : Fragment() {
         val tvProgress = view.findViewById<TextView>(R.id.tv_progress)
         val tvTick = view.findViewById<TextView>(R.id.tv_tick)
 
-        // Kotlin 风格：with DSL 批量配置
         with(ctpv) {
             countTime = 10_000L
             textStyle = CountTimeProgressView.TEXT_STYLE_CLOCK
@@ -46,23 +40,27 @@ class AnimationKotlinFragment : Fragment() {
             bindLifecycle(viewLifecycleOwner)
 
             setOnStateChangedListener { state ->
-                tvState.text = "状态: ${state.name}"
+                tvState.text = getString(R.string.format_state, state.name)
             }
 
             addOnProgressChangedListener { progress, remainingMillis ->
-                tvProgress.text = "进度: ${"%.2f".format(progress)} | 剩余: ${"%.1f".format(remainingMillis / 1000f)}s"
+                tvProgress.text = getString(
+                    R.string.format_progress_remaining,
+                    progress,
+                    remainingMillis / 1000f
+                )
             }
 
             setOnTickListener { remainingMillis, remainingSeconds ->
-                tvTick.text = "Tick: ${remainingSeconds}s (${remainingMillis}ms)"
+                tvTick.text = getString(R.string.format_tick_millis, remainingSeconds, remainingMillis)
             }
 
             setOnCountdownEndListener {
-                Toast.makeText(requireContext(), "倒计时结束", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.toast_countdown_finished), Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
-        // 控制按钮
         view.findViewById<View>(R.id.btn_start).setOnClickListener { ctpv.startCountTimeAnimation() }
         view.findViewById<View>(R.id.btn_pause).setOnClickListener { ctpv.pauseCountTimeAnimation() }
         view.findViewById<View>(R.id.btn_resume).setOnClickListener { ctpv.resumeCountTimeAnimation() }

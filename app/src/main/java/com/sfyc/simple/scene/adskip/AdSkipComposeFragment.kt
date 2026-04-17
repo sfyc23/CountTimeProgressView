@@ -26,8 +26,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,13 +35,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.Fragment
 import com.sfyc.ctpv.CountTimeProgressView
 import com.sfyc.ctpv.CountTimeProgressViewCompose
+import com.sfyc.simple.R
 
-/**
- * 广告跳过场景 — Kotlin + Compose 实现。
- *
- * 通过 AndroidView 包装 CountTimeProgressView，
- * 使用 Compose State 桥接控件回调来驱动 UI 更新。
- */
 class AdSkipComposeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
@@ -52,13 +47,13 @@ class AdSkipComposeFragment : Fragment() {
 
 @Composable
 private fun AdSkipScreen() {
-    val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
-    var statusText by remember { mutableStateOf("状态: 等待开始") }
+    val initialStatus = stringResource(R.string.status_waiting_start)
+    val restartedStatus = stringResource(R.string.status_restarted)
+    var statusText by remember(initialStatus) { mutableStateOf(initialStatus) }
     var viewRef by remember { mutableStateOf<CountTimeProgressView?>(null) }
 
     Column(modifier = Modifier.fillMaxSize()) {
-        // 模拟广告区域
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -66,19 +61,18 @@ private fun AdSkipScreen() {
                 .background(androidx.compose.ui.graphics.Color(0xFFE8DEF8))
         ) {
             Text(
-                "广告内容区域",
+                stringResource(R.string.ad_content_area),
                 modifier = Modifier.align(Alignment.Center),
                 fontSize = 20.sp,
                 color = androidx.compose.ui.graphics.Color(0xFF6750A4)
             )
 
-            // 右上角倒计时控件
             AndroidView(
                 factory = { ctx ->
                     CountTimeProgressViewCompose.create(ctx) {
                         countTime = 5000L
                         textStyle = CountTimeProgressView.TEXT_STYLE_JUMP
-                        titleCenterText = "跳过"
+                        titleCenterText = ctx.getString(R.string.text_skip)
                         titleCenterTextSize = 11f
                         titleCenterTextColor = Color.WHITE
                         backgroundColorCenter = Color.parseColor("#88000000")
@@ -90,24 +84,24 @@ private fun AdSkipScreen() {
                         markBallColor = Color.WHITE
                         strokeCap = Paint.Cap.ROUND
                         clickableAfterMillis = 2000L
-                        disabledText = "广告"
-                        finishedText = "进入"
+                        disabledText = ctx.getString(R.string.text_ad)
+                        finishedText = ctx.getString(R.string.text_enter)
 
                         bindLifecycle(lifecycleOwner)
 
                         setOnStateChangedListener { state ->
-                            statusText = "状态: ${state.name}"
+                            statusText = ctx.getString(R.string.format_state, state.name)
                         }
 
                         setOnCountdownEndListener {
-                            statusText = "状态: 广告结束，自动进入"
-                            Toast.makeText(ctx, "广告结束", Toast.LENGTH_SHORT).show()
+                            statusText = ctx.getString(R.string.status_ad_finished_auto)
+                            Toast.makeText(ctx, ctx.getString(R.string.toast_ad_finished), Toast.LENGTH_SHORT).show()
                         }
 
                         setOnClickCallback { overageTime ->
                             cancelCountTimeAnimation()
-                            statusText = "状态: 用户跳过，剩余 ${overageTime}ms"
-                            Toast.makeText(ctx, "已跳过", Toast.LENGTH_SHORT).show()
+                            statusText = ctx.getString(R.string.status_user_skipped_ms, overageTime)
+                            Toast.makeText(ctx, ctx.getString(R.string.toast_skipped), Toast.LENGTH_SHORT).show()
                         }
 
                         startCountTimeAnimation()
@@ -122,17 +116,16 @@ private fun AdSkipScreen() {
 
         Spacer(modifier = Modifier.weight(1f))
 
-        // 底部状态面板
         Column(modifier = Modifier.padding(16.dp)) {
             Text(statusText, fontFamily = FontFamily.Monospace, fontSize = 14.sp)
             Spacer(modifier = Modifier.height(12.dp))
             FilledTonalButton(
                 onClick = {
-                    statusText = "状态: 重新开始"
+                    statusText = restartedStatus
                     viewRef?.startCountTimeAnimation()
                 },
                 modifier = Modifier.fillMaxWidth()
-            ) { Text("重新演示") }
+            ) { Text(stringResource(R.string.action_replay)) }
         }
     }
 }

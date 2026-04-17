@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -25,8 +26,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -34,13 +35,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.Fragment
 import com.sfyc.ctpv.CountTimeProgressView
 import com.sfyc.ctpv.CountTimeProgressViewCompose
+import com.sfyc.simple.R
 
-/**
- * 动画控制页 — Kotlin + Compose 实现。
- *
- * 展示 Compose 风格的 AndroidView factory 配置方式，
- * 使用 Compose State 桥接控件回调驱动 UI 更新。
- */
 class AnimationComposeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
         ComposeView(requireContext()).apply {
@@ -50,13 +46,14 @@ class AnimationComposeFragment : Fragment() {
 
 @Composable
 private fun AnimationScreen() {
-    val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
+    val initialState = stringResource(R.string.status_idle)
+    val initialProgress = stringResource(R.string.progress_initial)
+    val initialTick = stringResource(R.string.tick_placeholder)
 
-    // Compose State 桥接控件回调
-    var stateText by remember { mutableStateOf("状态: IDLE") }
-    var progressText by remember { mutableStateOf("进度: 0.00 | 剩余: 10.0s") }
-    var tickText by remember { mutableStateOf("Tick: --") }
+    var stateText by remember(initialState) { mutableStateOf(initialState) }
+    var progressText by remember(initialProgress) { mutableStateOf(initialProgress) }
+    var tickText by remember(initialTick) { mutableStateOf(initialTick) }
     var viewRef by remember { mutableStateOf<CountTimeProgressView?>(null) }
 
     Column(
@@ -65,7 +62,6 @@ private fun AnimationScreen() {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // 大号倒计时控件
         AndroidView(
             factory = { ctx ->
                 CountTimeProgressViewCompose.create(ctx) {
@@ -84,19 +80,25 @@ private fun AnimationScreen() {
 
                     bindLifecycle(lifecycleOwner)
 
-                    setOnStateChangedListener { state -> stateText = "状态: ${state.name}" }
+                    setOnStateChangedListener { state ->
+                        stateText = ctx.getString(R.string.format_state, state.name)
+                    }
 
                     addOnProgressChangedListener { progress, remainingMillis ->
-                        progressText = "进度: ${"%.2f".format(progress)} | " +
-                                "剩余: ${"%.1f".format(remainingMillis / 1000f)}s"
+                        progressText = ctx.getString(
+                            R.string.format_progress_remaining,
+                            progress,
+                            remainingMillis / 1000f
+                        )
                     }
 
                     setOnTickListener { remainingMillis, remainingSeconds ->
-                        tickText = "Tick: ${remainingSeconds}s (${remainingMillis}ms)"
+                        tickText = ctx.getString(R.string.format_tick_millis, remainingSeconds, remainingMillis)
                     }
 
                     setOnCountdownEndListener {
-                        Toast.makeText(ctx, "倒计时结束", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(ctx, ctx.getString(R.string.toast_countdown_finished), Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }.also { viewRef = it }
             },
@@ -105,29 +107,30 @@ private fun AnimationScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 控制按钮行
-        Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
             FilledTonalButton(
                 onClick = { viewRef?.startCountTimeAnimation() },
                 modifier = Modifier.weight(1f)
-            ) { Text("开始", fontSize = 12.sp) }
+            ) { Text(stringResource(R.string.action_start), fontSize = 12.sp) }
             FilledTonalButton(
                 onClick = { viewRef?.pauseCountTimeAnimation() },
                 modifier = Modifier.weight(1f)
-            ) { Text("暂停", fontSize = 12.sp) }
+            ) { Text(stringResource(R.string.action_pause), fontSize = 12.sp) }
             FilledTonalButton(
                 onClick = { viewRef?.resumeCountTimeAnimation() },
                 modifier = Modifier.weight(1f)
-            ) { Text("恢复", fontSize = 12.sp) }
+            ) { Text(stringResource(R.string.action_resume), fontSize = 12.sp) }
             FilledTonalButton(
                 onClick = { viewRef?.resetCountTimeAnimation() },
                 modifier = Modifier.weight(1f)
-            ) { Text("重置", fontSize = 12.sp) }
+            ) { Text(stringResource(R.string.action_reset), fontSize = 12.sp) }
         }
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // 实时状态面板
         Text(stateText, fontFamily = FontFamily.Monospace, fontSize = 14.sp)
         Text(progressText, fontFamily = FontFamily.Monospace, fontSize = 14.sp)
         Text(tickText, fontFamily = FontFamily.Monospace, fontSize = 14.sp)

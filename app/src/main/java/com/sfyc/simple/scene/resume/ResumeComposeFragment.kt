@@ -28,7 +28,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,13 +38,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.Fragment
 import com.sfyc.ctpv.CountTimeProgressView
 import com.sfyc.ctpv.CountTimeProgressViewCompose
+import com.sfyc.simple.R
 
-/**
- * 进度恢复场景 — Kotlin + Compose 实现。
- *
- * 使用 Compose Slider 控制剩余时间参数，
- * 通过 AndroidView 包装 CountTimeProgressView 并桥接回调。
- */
 class ResumeComposeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
         ComposeView(requireContext()).apply {
@@ -52,6 +49,7 @@ class ResumeComposeFragment : Fragment() {
 
 @Composable
 private fun ResumeScreen() {
+    val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     var logText by remember { mutableStateOf("") }
     var remainingSeconds by remember { mutableFloatStateOf(42f) }
@@ -63,7 +61,6 @@ private fun ResumeScreen() {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // 大号 CLOCK 模式倒计时控件
         AndroidView(
             factory = { ctx ->
                 CountTimeProgressViewCompose.create(ctx) {
@@ -90,9 +87,8 @@ private fun ResumeScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 剩余时间滑块
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("剩余:", modifier = Modifier.width(48.dp))
+            Text(stringResource(R.string.label_remaining_short), modifier = Modifier.width(56.dp))
             Slider(
                 value = remainingSeconds,
                 onValueChange = { remainingSeconds = it },
@@ -104,23 +100,21 @@ private fun ResumeScreen() {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // 操作按钮
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             OutlinedButton(onClick = {
                 val ms = (remainingSeconds * 1000).toLong()
-                logText = "→ startFromRemaining(${ms}ms)\n"
+                logText = "${context.getString(R.string.log_start_from_remaining, ms)}\n"
                 viewRef?.startCountTimeAnimationFromRemaining(ms)
-            }) { Text("从剩余时间恢复", fontSize = 12.sp) }
+            }) { Text(stringResource(R.string.action_resume_from_remaining), fontSize = 12.sp) }
 
             OutlinedButton(onClick = {
-                logText = "→ startCountTimeAnimation(0.5f)\n"
+                logText = "${context.getString(R.string.log_start_from_half)}\n"
                 viewRef?.startCountTimeAnimation(0.5f)
-            }) { Text("从50%恢复", fontSize = 12.sp) }
+            }) { Text(stringResource(R.string.action_resume_from_50_percent), fontSize = 12.sp) }
         }
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // 状态日志
         Text(
             logText,
             modifier = Modifier

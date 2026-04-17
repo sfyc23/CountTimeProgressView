@@ -27,7 +27,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,13 +37,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.Fragment
 import com.sfyc.ctpv.CountTimeProgressView
 import com.sfyc.ctpv.CountTimeProgressViewCompose
+import com.sfyc.simple.R
 
-/**
- * 验证码倒计时场景 — Kotlin + Compose 实现。
- *
- * 使用 Compose State 桥接 CountTimeProgressView 的回调，
- * 驱动按钮文字和日志文本的响应式更新。
- */
 class VerifyCodeComposeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
         ComposeView(requireContext()).apply {
@@ -51,8 +48,10 @@ class VerifyCodeComposeFragment : Fragment() {
 
 @Composable
 private fun VerifyCodeScreen() {
+    val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
-    var btnText by remember { mutableStateOf("重新发送 (60s)") }
+    val initialResend = stringResource(R.string.action_resend_initial)
+    var btnText by remember(initialResend) { mutableStateOf(initialResend) }
     var btnEnabled by remember { mutableStateOf(false) }
     var logText by remember { mutableStateOf("") }
     var viewRef by remember { mutableStateOf<CountTimeProgressView?>(null) }
@@ -63,22 +62,20 @@ private fun VerifyCodeScreen() {
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("手机号: 138****8888", fontSize = 16.sp)
+        Text(stringResource(R.string.phone_masked), fontSize = 16.sp)
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // 验证码输入 + 圆形倒计时
         Row(verticalAlignment = Alignment.CenterVertically) {
             OutlinedTextField(
                 value = "",
                 onValueChange = {},
-                label = { Text("验证码") },
+                label = { Text(stringResource(R.string.hint_verification_code)) },
                 modifier = Modifier.weight(1f)
             )
 
             Spacer(modifier = Modifier.width(12.dp))
 
-            // 倒计时控件：通过 AndroidView 包装
             AndroidView(
                 factory = { ctx ->
                     CountTimeProgressViewCompose.create(ctx) {
@@ -98,18 +95,18 @@ private fun VerifyCodeScreen() {
                         bindLifecycle(lifecycleOwner)
 
                         setOnTickListener { _, remainingSeconds ->
-                            btnText = "重新发送 (${remainingSeconds}s)"
+                            btnText = ctx.getString(R.string.action_resend_with_seconds, remainingSeconds)
                             logText += "Tick: ${remainingSeconds}s\n"
                         }
 
-                        setOnWarningListener { _ ->
-                            logText += "⚠ 最后10秒！\n"
+                        setOnWarningListener {
+                            logText += "${ctx.getString(R.string.log_warning_last_10_seconds)}\n"
                         }
 
                         setOnCountdownEndListener {
                             btnEnabled = true
-                            btnText = "重新发送"
-                            logText += "✅ 倒计时结束\n"
+                            btnText = ctx.getString(R.string.action_resend)
+                            logText += "${ctx.getString(R.string.log_countdown_finished_resend)}\n"
                         }
                     }.also { viewRef = it }
                 },
@@ -117,10 +114,8 @@ private fun VerifyCodeScreen() {
             )
         }
 
-        // 重发按钮
         TextButton(onClick = {}, enabled = btnEnabled) { Text(btnText) }
 
-        // 日志区域
         Text(
             logText,
             modifier = Modifier
@@ -131,15 +126,14 @@ private fun VerifyCodeScreen() {
             fontSize = 12.sp
         )
 
-        // 发送验证码按钮
         Button(
             onClick = {
-                logText = "→ 发送验证码...\n"
+                logText = "${context.getString(R.string.log_sending_code)}\n"
                 btnEnabled = false
-                btnText = "重新发送 (60s)"
+                btnText = context.getString(R.string.action_resend_initial)
                 viewRef?.startCountTimeAnimation()
             },
             modifier = Modifier.fillMaxWidth()
-        ) { Text("发送验证码") }
+        ) { Text(stringResource(R.string.action_send_code)) }
     }
 }

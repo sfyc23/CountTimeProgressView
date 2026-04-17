@@ -8,7 +8,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- 闪屏页（启动入口） -->
+        <!-- Splash entry point -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -19,25 +19,25 @@
             </intent-filter>
         </activity>
 
-        <!-- 导航首页 -->
+        <!-- Main navigation page -->
         <activity android:name=".MainActivity" />
 
-        <!-- 传统演示页（兼容旧版） -->
+        <!-- Classic compatibility demo -->
         <activity android:name=".SimpleActivity" />
 
-        <!-- 动画控制页 -->
+        <!-- Animation control page -->
         <activity android:name=".animation.AnimationControlActivity" />
 
-        <!-- 场景：广告跳过 -->
+        <!-- Ad skip scenario -->
         <activity android:name=".scene.adskip.AdSkipSceneActivity" />
 
-        <!-- 场景：验证码倒计时 -->
+        <!-- Verification code timer scenario -->
         <activity android:name=".scene.verifycode.VerifyCodeSceneActivity" />
 
-        <!-- 场景：进度恢复 -->
+        <!-- Progress restore scenario -->
         <activity android:name=".scene.resume.ResumeProgressSceneActivity" />
 
-        <!-- 场景：考试计时器 -->
+        <!-- Exam timer scenario -->
         <activity android:name=".scene.exam.ExamTimerSceneActivity" />
 
     </application>

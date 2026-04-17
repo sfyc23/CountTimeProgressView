@@ -1,16 +1,15 @@
 package com.sfyc.ctpv
 
 /**
- * 时钟格式化工具，将毫秒数转为 HH:MM:SS 格式。
- * 独立于 View 类以便于 JVM 单元测试（避免 Android 框架依赖）。
+ * Formats millisecond values as HH:MM:SS without depending on Android framework APIs.
  */
 object ClockTimeFormatter {
 
     /**
-     * 将毫秒数格式化为 "HH:MM:SS" 字符串。
+     * Converts milliseconds to an "HH:MM:SS" string.
      *
-     * @param millis 毫秒数，<= 0 时返回 "00:00:00"
-     * @return 格式化后的时间字符串，例如 "01:02:03"
+     * @param millis millisecond value. Values <= 0 return "00:00:00".
+     * @return formatted time, for example "01:02:03".
      */
     @JvmStatic
     fun format(millis: Long): String {

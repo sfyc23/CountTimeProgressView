@@ -1,25 +1,100 @@
 <resources>
     <string name="app_name">CountTimeProgressView</string>
 
-    <!-- Tab 标题 -->
     <string name="tab_java_xml">Java+XML</string>
     <string name="tab_kotlin_xml">Kotlin+XML</string>
     <string name="tab_compose">Compose</string>
 
-    <!-- 导航首页 -->
     <string name="main_title">CountTimeProgressView Demo</string>
-    <string name="nav_basic_styles">基础样式展示</string>
-    <string name="nav_basic_styles_desc">textStyle / 外观参数 / 渐变色</string>
-    <string name="nav_animation">动画控制</string>
-    <string name="nav_animation_desc">开始 / 暂停 / 恢复 / 重置 / 实时状态</string>
-    <string name="nav_advanced">高级功能</string>
-    <string name="nav_advanced_desc">阈值提醒 / 跳过延迟 / 自定义格式化 / 指定进度</string>
-    <string name="nav_ad_skip">场景：广告跳过</string>
-    <string name="nav_ad_skip_desc">真实闪屏广告跳过场景</string>
-    <string name="nav_verify_code">场景：验证码倒计时</string>
-    <string name="nav_verify_code_desc">发送验证码后的倒计时按钮</string>
-    <string name="nav_resume">场景：进度恢复</string>
-    <string name="nav_resume_desc">从服务器剩余时间恢复 / 屏幕旋转恢复</string>
-    <string name="nav_exam">场景：考试计时器</string>
-    <string name="nav_exam_desc">长时间倒计时 + 警告 + 暂停恢复</string>
+    <string name="nav_animation">Animation Control</string>
+    <string name="nav_animation_desc">Start / Pause / Resume / Reset / live state</string>
+    <string name="nav_ad_skip">Scenario: Ad Skip</string>
+    <string name="nav_ad_skip_desc">Real splash ad skip scenario</string>
+    <string name="nav_verify_code">Scenario: Verification Code Timer</string>
+    <string name="nav_verify_code_desc">Countdown button after sending a verification code</string>
+    <string name="nav_resume">Scenario: Progress Restore</string>
+    <string name="nav_resume_desc">Restore from server remaining time / screen rotation restore</string>
+    <string name="nav_exam">Scenario: Exam Timer</string>
+    <string name="nav_exam_desc">Long countdown + warning + pause/resume</string>
+    <string name="nav_legacy">Classic Demo</string>
+    <string name="nav_legacy_desc">Original parameter panel for compatibility</string>
+
+    <string name="label_text_style">Text Style:</string>
+    <string name="action_click_to_change">Click to change</string>
+    <string name="label_count_time">Count Time:</string>
+    <string name="label_start_angle">Start Angle:</string>
+    <string name="label_ball_flag">Ball Flag:</string>
+    <string name="label_clockwise">Clockwise:</string>
+    <string name="label_ball_width">Ball Width:</string>
+    <string name="label_border_width">Border Width:</string>
+    <string name="label_stroke_cap">Stroke Cap:</string>
+    <string name="stroke_cap_default">BUTT (click to change)</string>
+    <string name="label_gradient">Gradient:</string>
+
+    <string name="dialog_count_time_style">CountTime Style</string>
+    <string name="dialog_stroke_cap">Stroke Cap</string>
+    <string name="text_skip">Skip</string>
+    <string name="text_please_wait">Please wait</string>
+    <string name="countdown_skip_seconds_template">Skip (%s)s</string>
+    <string name="toast_times_up">Time\'s up</string>
+    <string name="toast_countdown_finished">Countdown finished</string>
+
+    <string name="panel_live_state">Live state panel</string>
+    <string name="status_idle">State: IDLE</string>
+    <string name="progress_initial">Progress: 0.00 | Remaining: 10.0s</string>
+    <string name="tick_placeholder">Tick: --</string>
+    <string name="action_start">Start</string>
+    <string name="action_pause">Pause</string>
+    <string name="action_resume">Resume</string>
+    <string name="action_reset">Reset</string>
+    <string name="format_state">State: %1$s</string>
+    <string name="format_progress_remaining">Progress: %1$.2f | Remaining: %2$.1fs</string>
+    <string name="format_tick_millis">Tick: %1$ds (%2$dms)</string>
+
+    <string name="ad_content_area">Ad content area</string>
+    <string name="text_ad">Ad</string>
+    <string name="text_enter">Enter</string>
+    <string name="status_waiting_start">State: waiting to start</string>
+    <string name="status_ad_finished_auto">State: ad finished, auto entering</string>
+    <string name="status_user_skipped_ms">State: user skipped, %1$dms remaining</string>
+    <string name="status_restarted">State: restarted</string>
+    <string name="toast_ad_finished">Ad finished</string>
+    <string name="toast_skipped">Skipped</string>
+    <string name="action_replay">Replay</string>
+
+    <string name="phone_masked">Phone: 138****8888</string>
+    <string name="hint_verification_code">Verification code</string>
+    <string name="action_resend_initial">Resend (60s)</string>
+    <string name="action_resend_with_seconds">Resend (%1$ds)</string>
+    <string name="action_resend">Resend</string>
+    <string name="action_send_code">Send verification code</string>
+    <string name="log_warning_last_10_seconds">Warning: last 10 seconds!</string>
+    <string name="log_countdown_finished_resend">Done: countdown finished, resend is available.</string>
+    <string name="log_sending_code">Sending verification code...</string>
+
+    <string name="panel_mock_server_data">Mock server data</string>
+    <string name="label_remaining_time">Remaining time:</string>
+    <string name="label_remaining_short">Left:</string>
+    <string name="action_resume_from_remaining">Resume from remaining time</string>
+    <string name="action_resume_from_50_percent" formatted="false">Resume from 50% progress</string>
+    <string name="action_rotation_restore_hint">Rotation restore hint</string>
+    <string name="log_start_from_remaining">startFromRemaining(%1$dms)</string>
+    <string name="log_start_from_half">startCountTimeAnimation(0.5f)</string>
+    <string name="log_rotation_hint_line_1">Hint: start the countdown, then rotate the screen. Progress will be restored automatically.</string>
+    <string name="log_rotation_hint_line_2">SavedState handles this without extra code.</string>
+
+    <string name="exam_status_not_started">Exam status: not started</string>
+    <string name="exam_status_running">Exam status: in progress</string>
+    <string name="exam_status_paused">Exam status: paused</string>
+    <string name="exam_status_finished">Exam status: finished</string>
+    <string name="exam_status_format">Exam status: %1$s</string>
+    <string name="action_start_exam">Start exam</string>
+    <string name="action_pause_exam">Pause exam</string>
+    <string name="action_resume_exam">Resume exam</string>
+    <string name="log_exam_one_minute_left">Only 1 minute left!</string>
+    <string name="log_exam_time_up">Exam time is up. Auto submit.</string>
+    <string name="log_exam_started">Exam started</string>
+    <string name="log_exam_paused">Exam paused</string>
+    <string name="log_exam_resumed">Exam resumed</string>
+    <string name="toast_exam_finished">Exam finished</string>
 </resources>

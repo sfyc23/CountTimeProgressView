@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="16dp">
@@ -19,7 +18,6 @@
             android:layout_width="200dp"
             android:layout_height="200dp" />
 
-        <!-- 文本样式 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -30,7 +28,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Text Style:"
+                android:text="@string/label_text_style"
                 android:textColor="#212121" />
 
             <TextView
@@ -38,11 +36,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Click to change"
+                android:text="@string/action_click_to_change"
                 android:textColor="@color/colorAccent" />
         </LinearLayout>
 
-        <!-- 倒计时时长 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -52,7 +49,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Count Time:"
+                android:text="@string/label_count_time"
                 android:textColor="#212121" />
 
             <SeekBar
@@ -64,7 +61,6 @@
                 android:progress="6" />
         </LinearLayout>
 
-        <!-- 起始角度 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -74,7 +70,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Start Angle:"
+                android:text="@string/label_start_angle"
                 android:textColor="#212121" />
 
             <SeekBar
@@ -86,7 +82,6 @@
                 android:progress="0" />
         </LinearLayout>
 
-        <!-- 小球开关 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -96,7 +91,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Ball Flag:"
+                android:text="@string/label_ball_flag"
                 android:textColor="#212121" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
@@ -106,7 +101,6 @@
                 android:checked="true" />
         </LinearLayout>
 
-        <!-- 顺/逆时针 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -116,7 +110,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Clockwise:"
+                android:text="@string/label_clockwise"
                 android:textColor="#212121" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
@@ -126,7 +120,6 @@
                 android:checked="true" />
         </LinearLayout>
 
-        <!-- 小球宽度 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -136,7 +129,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Ball Width:"
+                android:text="@string/label_ball_width"
                 android:textColor="#212121" />
 
             <SeekBar
@@ -148,7 +141,6 @@
                 android:progress="6" />
         </LinearLayout>
 
-        <!-- 边框宽度 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -158,7 +150,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Border Width:"
+                android:text="@string/label_border_width"
                 android:textColor="#212121" />
 
             <SeekBar
@@ -170,7 +162,6 @@
                 android:progress="4" />
         </LinearLayout>
 
-        <!-- StrokeCap -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -180,7 +171,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Stroke Cap:"
+                android:text="@string/label_stroke_cap"
                 android:textColor="#212121" />
 
             <TextView
@@ -188,11 +179,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="BUTT (click to change)"
+                android:text="@string/stroke_cap_default"
                 android:textColor="@color/colorAccent" />
         </LinearLayout>
 
-        <!-- 渐变色开关 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -202,7 +192,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Gradient:"
+                android:text="@string/label_gradient"
                 android:textColor="#212121" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial

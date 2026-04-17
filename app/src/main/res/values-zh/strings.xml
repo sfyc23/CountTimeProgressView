@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">CountTimeProgressView</string>
+
+    <string name="tab_java_xml">Java+XML</string>
+    <string name="tab_kotlin_xml">Kotlin+XML</string>
+    <string name="tab_compose">Compose</string>
+
+    <string name="main_title">CountTimeProgressView 示例</string>
+    <string name="nav_animation">动画控制</string>
+    <string name="nav_animation_desc">开始 / 暂停 / 恢复 / 重置 / 实时状态</string>
+    <string name="nav_ad_skip">场景：广告跳过</string>
+    <string name="nav_ad_skip_desc">真实闪屏广告跳过场景</string>
+    <string name="nav_verify_code">场景：验证码倒计时</string>
+    <string name="nav_verify_code_desc">发送验证码后的倒计时按钮</string>
+    <string name="nav_resume">场景：进度恢复</string>
+    <string name="nav_resume_desc">从服务端剩余时间恢复 / 屏幕旋转恢复</string>
+    <string name="nav_exam">场景：考试计时器</string>
+    <string name="nav_exam_desc">长倒计时 + 警告 + 暂停恢复</string>
+    <string name="nav_legacy">传统演示页</string>
+    <string name="nav_legacy_desc">原始参数面板，兼容旧版</string>
+
+    <string name="label_text_style">文本样式：</string>
+    <string name="action_click_to_change">点击修改</string>
+    <string name="label_count_time">倒计时：</string>
+    <string name="label_start_angle">起始角度：</string>
+    <string name="label_ball_flag">显示小球：</string>
+    <string name="label_clockwise">顺时针：</string>
+    <string name="label_ball_width">小球宽度：</string>
+    <string name="label_border_width">边框宽度：</string>
+    <string name="label_stroke_cap">端点样式：</string>
+    <string name="stroke_cap_default">BUTT（点击修改）</string>
+    <string name="label_gradient">渐变：</string>
+
+    <string name="dialog_count_time_style">倒计时样式</string>
+    <string name="dialog_stroke_cap">端点样式</string>
+    <string name="text_skip">跳过</string>
+    <string name="text_please_wait">请稍候</string>
+    <string name="countdown_skip_seconds_template">跳过（%s）秒</string>
+    <string name="toast_times_up">时间到</string>
+    <string name="toast_countdown_finished">倒计时结束</string>
+
+    <string name="panel_live_state">实时状态面板</string>
+    <string name="status_idle">状态：IDLE</string>
+    <string name="progress_initial">进度：0.00 | 剩余：10.0秒</string>
+    <string name="tick_placeholder">Tick：--</string>
+    <string name="action_start">开始</string>
+    <string name="action_pause">暂停</string>
+    <string name="action_resume">恢复</string>
+    <string name="action_reset">重置</string>
+    <string name="format_state">状态：%1$s</string>
+    <string name="format_progress_remaining">进度：%1$.2f | 剩余：%2$.1f秒</string>
+    <string name="format_tick_millis">Tick：%1$d秒（%2$dms）</string>
+
+    <string name="ad_content_area">广告内容区域</string>
+    <string name="text_ad">广告</string>
+    <string name="text_enter">进入</string>
+    <string name="status_waiting_start">状态：等待开始</string>
+    <string name="status_ad_finished_auto">状态：广告结束，自动进入</string>
+    <string name="status_user_skipped_ms">状态：用户跳过，剩余 %1$dms</string>
+    <string name="status_restarted">状态：重新开始</string>
+    <string name="toast_ad_finished">广告结束</string>
+    <string name="toast_skipped">已跳过</string>
+    <string name="action_replay">重新演示</string>
+
+    <string name="phone_masked">手机号：138****8888</string>
+    <string name="hint_verification_code">验证码</string>
+    <string name="action_resend_initial">重新发送（60秒）</string>
+    <string name="action_resend_with_seconds">重新发送（%1$d秒）</string>
+    <string name="action_resend">重新发送</string>
+    <string name="action_send_code">发送验证码</string>
+    <string name="log_warning_last_10_seconds">警告：最后 10 秒！</string>
+    <string name="log_countdown_finished_resend">完成：倒计时结束，可以重新发送。</string>
+    <string name="log_sending_code">正在发送验证码...</string>
+
+    <string name="panel_mock_server_data">模拟服务端数据</string>
+    <string name="label_remaining_time">剩余时间：</string>
+    <string name="label_remaining_short">剩余：</string>
+    <string name="action_resume_from_remaining">从剩余时间恢复</string>
+    <string name="action_resume_from_50_percent" formatted="false">从 50% 进度恢复</string>
+    <string name="action_rotation_restore_hint">屏幕旋转恢复提示</string>
+    <string name="log_start_from_remaining">startFromRemaining(%1$dms)</string>
+    <string name="log_start_from_half">startCountTimeAnimation(0.5f)</string>
+    <string name="log_rotation_hint_line_1">提示：先开始倒计时，然后旋转屏幕，进度会自动恢复。</string>
+    <string name="log_rotation_hint_line_2">SavedState 会处理恢复，不需要额外代码。</string>
+
+    <string name="exam_status_not_started">考试状态：未开始</string>
+    <string name="exam_status_running">考试状态：进行中</string>
+    <string name="exam_status_paused">考试状态：已暂停</string>
+    <string name="exam_status_finished">考试状态：已结束</string>
+    <string name="exam_status_format">考试状态：%1$s</string>
+    <string name="action_start_exam">开始考试</string>
+    <string name="action_pause_exam">暂停考试</string>
+    <string name="action_resume_exam">继续考试</string>
+    <string name="log_exam_one_minute_left">还剩 1 分钟！</string>
+    <string name="log_exam_time_up">考试时间到，自动提交。</string>
+    <string name="log_exam_started">考试开始</string>
+    <string name="log_exam_paused">考试暂停</string>
+    <string name="log_exam_resumed">考试继续</string>
+    <string name="toast_exam_finished">考试结束</string>
+</resources>

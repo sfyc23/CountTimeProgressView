@@ -27,7 +27,7 @@
         <attr name="titleCenterColor" format="color"/>
         <attr name="titleCenterSize" format="dimension" />
 
-        <!-- 2.0 新增属性 -->
+        <!-- Added in 2.0 -->
         <attr name="autoStart" format="boolean" />
         <attr name="finishedText" format="string" />
         <attr name="showCenterText" format="boolean" />
@@ -39,11 +39,11 @@
         <attr name="gradientStartColor" format="color" />
         <attr name="gradientEndColor" format="color" />
 
-        <!-- v2.1 新增属性：阈值提醒 -->
+        <!-- Added in 2.1: warning threshold -->
         <attr name="warningTime" format="integer" />
         <attr name="warningColor" format="color" />
 
-        <!-- v2.1 新增属性：跳过延迟 -->
+        <!-- Added in 2.1: click delay -->
         <attr name="clickableAfter" format="integer" />
         <attr name="disabledText" format="string" />
 

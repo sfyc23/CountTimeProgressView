@@ -16,14 +16,6 @@ import androidx.fragment.app.Fragment;
 import com.sfyc.ctpv.CountTimeProgressView;
 import com.sfyc.simple.R;
 
-import java.util.Locale;
-
-/**
- * 动画控制页 — Java + XML 实现。
- * <p>
- * 展示 Java 风格的逐行 setter 属性配置方式，
- * 以及开始/暂停/恢复/重置四个动画控制操作。
- */
 public class AnimationJavaFragment extends Fragment {
 
     @Nullable
@@ -41,7 +33,6 @@ public class AnimationJavaFragment extends Fragment {
         TextView tvProgress = view.findViewById(R.id.tv_progress);
         TextView tvTick = view.findViewById(R.id.tv_tick);
 
-        // Java 风格：逐行 setter 配置属性
         ctpv.setCountTime(10000L);
         ctpv.setTextStyle(CountTimeProgressView.TEXT_STYLE_CLOCK);
         ctpv.setTitleCenterTextSize(16f);
@@ -54,35 +45,30 @@ public class AnimationJavaFragment extends Fragment {
         ctpv.setMarkBallWidth(8f);
         ctpv.setMarkBallColor(Color.parseColor("#6750A4"));
         ctpv.setStrokeCap(Paint.Cap.ROUND);
-
-        // 绑定生命周期
         ctpv.bindLifecycle(getViewLifecycleOwner());
 
-        // 状态变更回调
         ctpv.setOnStateChangedListener(state -> {
-            tvState.setText("状态: " + state.name());
+            tvState.setText(getString(R.string.format_state, state.name()));
             return kotlin.Unit.INSTANCE;
         });
 
-        // 进度变化回调（每帧触发）
         ctpv.addOnProgressChangedListener((progress, remainingMillis) -> {
-            tvProgress.setText(String.format(Locale.getDefault(),
-                    "进度: %.2f | 剩余: %.1fs", progress, remainingMillis / 1000f));
+            tvProgress.setText(getString(
+                    R.string.format_progress_remaining,
+                    progress,
+                    remainingMillis / 1000f
+            ));
             return kotlin.Unit.INSTANCE;
         });
 
-        // 每秒 Tick 回调
         ctpv.setOnTickListener((remainingMillis, remainingSeconds) -> {
-            tvTick.setText(String.format(Locale.getDefault(),
-                    "Tick: %ds (%dms)", remainingSeconds, remainingMillis));
+            tvTick.setText(getString(R.string.format_tick_millis, remainingSeconds, remainingMillis));
             return kotlin.Unit.INSTANCE;
         });
 
-        // 倒计时结束回调
         ctpv.setOnCountdownEndListener(() ->
-                Toast.makeText(requireContext(), "倒计时结束", Toast.LENGTH_SHORT).show());
+                Toast.makeText(requireContext(), getString(R.string.toast_countdown_finished), Toast.LENGTH_SHORT).show());
 
-        // 控制按钮
         view.findViewById(R.id.btn_start).setOnClickListener(v -> ctpv.startCountTimeAnimation());
         view.findViewById(R.id.btn_pause).setOnClickListener(v -> ctpv.pauseCountTimeAnimation());
         view.findViewById(R.id.btn_resume).setOnClickListener(v -> ctpv.resumeCountTimeAnimation());

@@ -1,6 +1,6 @@
 <resources>
 
-    <!-- 基础主题，采用 Material Design 3 风格 -->
+    <!-- Base Material Design 3 theme -->
     <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryContainer">#EADDFF</item>
@@ -8,7 +8,7 @@
         <item name="android:statusBarColor">@color/colorPrimary</item>
     </style>
 
-    <!-- 全屏主题，用于闪屏页 -->
+    <!-- Fullscreen theme for the splash screen -->
     <style name="AppTheme.FullScreen" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>

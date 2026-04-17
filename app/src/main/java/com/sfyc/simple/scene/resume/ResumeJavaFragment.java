@@ -16,14 +16,6 @@ import androidx.fragment.app.Fragment;
 import com.sfyc.ctpv.CountTimeProgressView;
 import com.sfyc.simple.R;
 
-/**
- * 进度恢复场景 — Java + XML 实现。
- * <p>
- * 演示功能：
- * - startCountTimeAnimationFromRemaining(millis)：从服务器返回的剩余时间恢复
- * - startCountTimeAnimation(fromProgress)：从指定进度恢复
- * - SavedState：屏幕旋转自动恢复
- */
 public class ResumeJavaFragment extends Fragment {
 
     @Nullable
@@ -41,7 +33,6 @@ public class ResumeJavaFragment extends Fragment {
         TextView tvRemaining = view.findViewById(R.id.tv_remaining_val);
         SeekBar seekRemaining = view.findViewById(R.id.seek_remaining);
 
-        // Java 风格：逐行 setter 配置
         ctpv.setCountTime(60000L);
         ctpv.setTextStyle(CountTimeProgressView.TEXT_STYLE_CLOCK);
         ctpv.setTitleCenterTextSize(16f);
@@ -54,39 +45,35 @@ public class ResumeJavaFragment extends Fragment {
         ctpv.setStrokeCap(Paint.Cap.ROUND);
         ctpv.bindLifecycle(getViewLifecycleOwner());
 
-        // 状态变更日志
         ctpv.setOnStateChangedListener(state -> {
             tvLog.append("State: " + state.name() + "\n");
             return kotlin.Unit.INSTANCE;
         });
 
-        // 剩余时间滑块
         seekRemaining.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) tvRemaining.setText(progress + "s");
             }
+
             @Override public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-        // 从服务器剩余时间恢复
         view.findViewById(R.id.btn_from_remaining).setOnClickListener(v -> {
             long remaining = seekRemaining.getProgress() * 1000L;
-            tvLog.setText("→ startFromRemaining(" + remaining + "ms)\n");
+            tvLog.setText(getString(R.string.log_start_from_remaining, remaining) + "\n");
             ctpv.startCountTimeAnimationFromRemaining(remaining);
         });
 
-        // 从 50% 进度恢复
         view.findViewById(R.id.btn_from_50).setOnClickListener(v -> {
-            tvLog.setText("→ startCountTimeAnimation(0.5f)\n");
+            tvLog.setText(getString(R.string.log_start_from_half) + "\n");
             ctpv.startCountTimeAnimation(0.5f);
         });
 
-        // 屏幕旋转恢复提示
         view.findViewById(R.id.btn_rotate_hint).setOnClickListener(v -> {
-            tvLog.append("提示: 先开始倒计时，然后旋转屏幕，进度将自动恢复\n");
-            tvLog.append("（SavedState 机制，无需额外代码）\n");
+            tvLog.append(getString(R.string.log_rotation_hint_line_1) + "\n");
+            tvLog.append(getString(R.string.log_rotation_hint_line_2) + "\n");
         });
     }
 }

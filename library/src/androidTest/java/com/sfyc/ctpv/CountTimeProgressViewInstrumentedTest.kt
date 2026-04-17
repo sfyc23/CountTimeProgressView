@@ -14,8 +14,8 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
 /**
- * CountTimeProgressView 仪器测试。
- * 在真实 Android 设备/模拟器上验证控件的基础行为。
+ * Instrumented tests for CountTimeProgressView.
+ * Verifies basic behavior on a real Android device or emulator.
  */
 @RunWith(AndroidJUnit4::class)
 class CountTimeProgressViewInstrumentedTest {
@@ -153,7 +153,7 @@ class CountTimeProgressViewInstrumentedTest {
             val hSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
             view.measure(wSpec, hSpec)
         }
-        // wrap_content 默认 84dp，转换后应大于 0
+        // wrap_content defaults to 84dp, so the measured size should be positive.
         assertTrue(view.measuredWidth > 0)
         assertTrue(view.measuredHeight > 0)
         assertEquals(view.measuredWidth, view.measuredHeight)

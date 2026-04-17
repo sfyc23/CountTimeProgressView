@@ -20,15 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * 考试计时器场景 — Java + XML 实现。
- * <p>
- * 演示功能：
- * - 5 分钟倒计时（演示用，实际考试可设为 3600000）
- * - CLOCK 文本样式
- * - warningTime：最后 60 秒警告变红
- * - 暂停 / 继续考试
- */
 public class ExamJavaFragment extends Fragment {
 
     @Nullable
@@ -46,8 +37,7 @@ public class ExamJavaFragment extends Fragment {
         TextView tvLog = view.findViewById(R.id.tv_exam_log);
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
 
-        // Java 风格配置
-        ctpv.setCountTime(300000L);   // 5 分钟演示
+        ctpv.setCountTime(300000L);
         ctpv.setTextStyle(CountTimeProgressView.TEXT_STYLE_CLOCK);
         ctpv.setTitleCenterTextSize(20f);
         ctpv.setBorderWidth(6f);
@@ -57,52 +47,51 @@ public class ExamJavaFragment extends Fragment {
         ctpv.setTitleCenterTextColor(Color.parseColor("#1C1B1F"));
         ctpv.setMarkBallFlag(false);
         ctpv.setStrokeCap(Paint.Cap.ROUND);
-
-        // 最后 60 秒警告
         ctpv.setWarningTime(60000L);
         ctpv.setWarningColor(Color.parseColor("#FF3B30"));
-
         ctpv.bindLifecycle(getViewLifecycleOwner());
 
-        // 状态变更
         ctpv.setOnStateChangedListener(state -> {
             switch (state.name()) {
-                case "RUNNING": tvStatus.setText("考试状态: 进行中"); break;
-                case "PAUSED":  tvStatus.setText("考试状态: 已暂停"); break;
-                case "FINISHED":tvStatus.setText("考试状态: 已结束"); break;
-                default:        tvStatus.setText("考试状态: " + state.name()); break;
+                case "RUNNING":
+                    tvStatus.setText(getString(R.string.exam_status_running));
+                    break;
+                case "PAUSED":
+                    tvStatus.setText(getString(R.string.exam_status_paused));
+                    break;
+                case "FINISHED":
+                    tvStatus.setText(getString(R.string.exam_status_finished));
+                    break;
+                default:
+                    tvStatus.setText(getString(R.string.exam_status_format, state.name()));
+                    break;
             }
             return kotlin.Unit.INSTANCE;
         });
 
-        // 警告回调
         ctpv.setOnWarningListener(remainingMillis -> {
-            tvLog.append(sdf.format(new Date()) + " ⚠ 还剩1分钟！\n");
+            tvLog.append(sdf.format(new Date()) + " " + getString(R.string.log_exam_one_minute_left) + "\n");
             return kotlin.Unit.INSTANCE;
         });
 
-        // 倒计时结束
         ctpv.setOnCountdownEndListener(() -> {
-            tvLog.append(sdf.format(new Date()) + " 考试时间到，自动提交\n");
-            Toast.makeText(requireContext(), "考试结束", Toast.LENGTH_SHORT).show();
+            tvLog.append(sdf.format(new Date()) + " " + getString(R.string.log_exam_time_up) + "\n");
+            Toast.makeText(requireContext(), getString(R.string.toast_exam_finished), Toast.LENGTH_SHORT).show();
         });
 
-        // 开始考试
         view.findViewById(R.id.btn_start_exam).setOnClickListener(v -> {
-            tvLog.setText(sdf.format(new Date()) + " 考试开始\n");
+            tvLog.setText(sdf.format(new Date()) + " " + getString(R.string.log_exam_started) + "\n");
             ctpv.startCountTimeAnimation();
         });
 
-        // 暂停考试
         view.findViewById(R.id.btn_pause_exam).setOnClickListener(v -> {
             ctpv.pauseCountTimeAnimation();
-            tvLog.append(sdf.format(new Date()) + " 考试暂停\n");
+            tvLog.append(sdf.format(new Date()) + " " + getString(R.string.log_exam_paused) + "\n");
         });
 
-        // 继续考试
         view.findViewById(R.id.btn_resume_exam).setOnClickListener(v -> {
             ctpv.resumeCountTimeAnimation();
-            tvLog.append(sdf.format(new Date()) + " 考试继续\n");
+            tvLog.append(sdf.format(new Date()) + " " + getString(R.string.log_exam_resumed) + "\n");
         });
     }
 }

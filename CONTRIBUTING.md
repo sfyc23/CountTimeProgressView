@@ -1,71 +1,71 @@
-# 贡献指南
+# Contributing Guide
 
-感谢你对 CountTimeProgressView 项目的关注！欢迎任何形式的贡献。
+Thanks for your interest in CountTimeProgressView. Contributions of all kinds are welcome.
 
-## 如何贡献
+## How to Contribute
 
-### 报告 Bug
+### Report a Bug
 
-1. 在 [Issues](https://github.com/sfyc23/CountTimeProgressView/issues) 中搜索是否已有相同问题
-2. 如果没有，创建新 Issue，请包含：
-   - 问题描述
-   - 复现步骤
-   - 期望行为 vs 实际行为
-   - 设备信息（Android 版本、设备型号）
-   - 相关代码片段或截图
+1. Search [Issues](https://github.com/sfyc23/CountTimeProgressView/issues) for an existing report.
+2. If no matching issue exists, create one and include:
+   - Problem description
+   - Steps to reproduce
+   - Expected behavior vs actual behavior
+   - Device information, including Android version and device model
+   - Relevant code snippets or screenshots
 
-### 提交代码
+### Submit Code
 
-1. Fork 本项目
-2. 创建功能分支：`git checkout -b feature/your-feature`
-3. 编写代码，确保：
-   - 遵循现有代码风格（Kotlin）
-   - 添加必要的中文注释
-   - 新增公开 API 需添加 KDoc
-   - 如有新功能，更新 README 和 CHANGELOG
-4. 运行构建验证：`./gradlew :library:assembleDebug :library:testDebugUnitTest`
-5. 提交变更：`git commit -m "feat: 你的功能描述"`
-6. 推送并创建 Pull Request
+1. Fork this repository.
+2. Create a feature branch: `git checkout -b feature/your-feature`.
+3. Make your changes and ensure:
+   - Code follows the existing Kotlin style.
+   - Comments and public messages are written in English.
+   - New public APIs include KDoc when needed.
+   - New features update README and CHANGELOG as appropriate.
+4. Run build verification: `./gradlew :library:assembleDebug :library:testDebugUnitTest`.
+5. Commit changes: `git commit -m "feat: your feature description"`.
+6. Push your branch and open a pull request.
 
-### Commit 规范
+### Commit Style
 
-建议使用以下前缀：
-- `feat:` 新功能
-- `fix:` Bug 修复
-- `docs:` 文档更新
-- `refactor:` 重构（不改变行为）
-- `perf:` 性能优化
-- `test:` 测试相关
-- `chore:` 构建/工具链变更
+Recommended prefixes:
+- `feat:` new feature
+- `fix:` bug fix
+- `docs:` documentation update
+- `refactor:` refactor without behavior changes
+- `perf:` performance improvement
+- `test:` tests
+- `chore:` build or tooling change
 
-## 开发环境
+## Development Environment
 
-- Android Studio Hedgehog 或更新版本
+- Android Studio Hedgehog or newer
 - JDK 17
 - Gradle 7.6+
 - Kotlin 1.8.22+
 
-## 项目结构
+## Project Structure
 
-```
+```text
 CountTimeProgressView/
-├── library/          # 核心库模块（零第三方依赖）
+├── library/          # Core library module with no third-party runtime dependency
 │   └── src/main/java/com/sfyc/ctpv/
-│       ├── CountTimeProgressView.kt       # 核心控件
-│       ├── CountTimeProgressViewCompose.kt # Compose 适配
-│       └── ClockTimeFormatter.kt          # 时钟格式化工具
-├── app/              # 示例 App 模块
-└── .AI/              # 重构分析文档
+│       ├── CountTimeProgressView.kt        # Core custom view
+│       ├── CountTimeProgressViewCompose.kt # Compose helper
+│       └── ClockTimeFormatter.kt           # Clock formatting utility
+├── app/              # Sample app module
+└── .AI/              # Refactor analysis notes
 ```
 
-## 编码规范
+## Coding Guidelines
 
-- 使用 Kotlin，避免 Java
-- 公开 API 添加 KDoc 注释（中文）
-- 属性 setter 中 dp/sp 转换需在注释中标明单位
-- `onDraw` 中避免创建对象
-- 新增 XML 属性需同步更新 `attrs.xml`
+- Prefer Kotlin for new code.
+- Add KDoc to public APIs when it clarifies usage.
+- Document dp/sp conversion behavior when adding public size APIs.
+- Avoid allocating objects in `onDraw`.
+- Update `attrs.xml` when adding XML attributes.
 
-## 许可证
+## License
 
-贡献的代码将遵循本项目的 [Apache License 2.0](LICENSE) 许可证。
+Contributed code follows this project's [Apache License 2.0](LICENSE).

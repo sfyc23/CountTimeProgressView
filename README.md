@@ -1,5 +1,5 @@
 ﻿[![twitter](https://img.shields.io/badge/twitter-sfyc23-blue.svg)](https://twitter.com/sfyc23)
-[![微博](https://img.shields.io/badge/%E5%BE%AE%E5%8D%9A-sfyc23-blue.svg)](https://weibo.com/sfyc23)
+[![Weibo](https://img.shields.io/badge/Weibo-sfyc23-blue.svg)](https://weibo.com/sfyc23)
 [![API](https://img.shields.io/badge/API-%2B21-green.svg)](https://android-arsenal.com/api?level=21)
 [![](https://jitpack.io/v/sfyc23/CountTimeProgressView.svg)](https://jitpack.io/#sfyc23/CountTimeProgressView)
 [![License](https://img.shields.io/badge/License-Apache%202.0-red.svg)]()
@@ -7,10 +7,10 @@
 
 **CountTimeProgressView** - An Android library that provides a count time circular progress view effect.
 
-[中文版][1]
+[Chinese][1]
 
 ## Sample
-![页面动图][2]
+![Demo animation][2]
 
 
 ## Usage
